@@ -275,11 +275,11 @@ nav {
     padding: 80px 0;
 }
 
-.produtos-grid {
+/*.produtos-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 2rem;
-}
+}*/
 
 .produto-card {
     background: var(--white);
@@ -703,6 +703,19 @@ a[title="WhatsApp"]::before {
     transition: transform 0.3s ease;
 }
 
+.tab-content {
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .tab-button {
+            transition: all 0.3s ease;
+        }
+
 
 /* Responsive Design */
 @media (max-width: 768px) {
@@ -744,9 +757,9 @@ a[title="WhatsApp"]::before {
         grid-template-columns: 1fr;
     }
 
-    .produtos-grid {
+    /*.produtos-grid {
         grid-template-columns: 1fr;
-    }
+    }*/
 }
 
 @media (max-width: 480px) {

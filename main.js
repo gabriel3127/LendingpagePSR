@@ -492,6 +492,42 @@ function initSchemaOrg() {
     console.log('Schema.org structured data injected successfully');
 }
 
+function showTab(tabName) {
+            // Esconder todo o conteúdo das abas
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => {
+                content.classList.add('hidden');
+            });
+
+            // Remover classe ativa de todos os botões
+            const buttons = document.querySelectorAll('.tab-button');
+            buttons.forEach(button => {
+                button.classList.remove('active');
+                button.classList.remove('bg-green-500', 'text-white');
+                button.classList.add('bg-gray-200', 'text-gray-600', 'hover:bg-gray-300');
+            });
+
+            // Mostrar o conteúdo da aba selecionada
+            document.getElementById('content-' + tabName).classList.remove('hidden');
+
+            // Adicionar classe ativa ao botão selecionado
+            const activeButton = document.getElementById('tab-' + tabName);
+            activeButton.classList.add('active', 'bg-green-500', 'text-white');
+            activeButton.classList.remove('bg-gray-200', 'text-gray-600', 'hover:bg-gray-300');
+        }
+
+        // Inicializar com a primeira aba ativa
+        document.addEventListener('DOMContentLoaded', function() {
+            const buttons = document.querySelectorAll('.tab-button');
+            buttons.forEach(button => {
+                if (!button.classList.contains('active')) {
+                    button.classList.add('bg-gray-200', 'text-gray-600', 'hover:bg-gray-300');
+                } else {
+                    button.classList.add('bg-green-500', 'text-white');
+                }
+            });
+        });
+
 // Export functions for potential external use
 window.PSREMBALAGENS = {
     initMobileMenu,

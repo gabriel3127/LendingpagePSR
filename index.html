@@ -14,9 +14,40 @@
     <meta property="og:type" content="website">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiByeD0iNCIgZmlsbD0iIzIxNDE5NCIvPgo8cGF0aCBkPSJNOCAxMEgxNlYyMkg4VjEwWiIgZmlsbD0iI2ZlYmIwZiIvPgo8cGF0aCBkPSJNMTggMTBIMjRWMTZIMThWMTBaIiBmaWxsPSIjZmViYjBmIi8+Cjwvc3ZnPgo=">
-    
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+
     <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#214194',
+                        secondary: '#febb0f'
+                    },
+                    borderRadius: {
+                        'none': '0px',
+                        'sm': '4px',
+                        DEFAULT: '8px',
+                        'md': '12px',
+                        'lg': '16px',
+                        'xl': '20px',
+                        '2xl': '24px',
+                        '3xl': '32px',
+                        'full': '9999px',
+                        'button': '8px'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
 
 </head>
 <body>
@@ -31,6 +62,7 @@
                 <li><a href="#diferenciais">Diferenciais</a></li>
                 <li><a href="#produtos">Produtos</a></li>
                 <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#localizacao">Localização</a></li>
                 <li><a href="#contato">Contato</a></li>
             </ul>
             <div class="header-social-links">
@@ -42,25 +74,34 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="hero" id="inicio">
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-text">
-                    <h1>Embalagens Personalizadas e Pronta Entrega para Seu Negócio no DF</h1>
-                    <p>Qualidade, variedade e preço competitivo para empresas e eventos. Entrega grátis no DF e entorno.</p>
-                    <a href="https://wa.me/5561993177107?text=Olá! Gostaria de solicitar um orçamento para embalagens." class="cta-primary whatsapp-icon" target="_blank">Solicite um Orçamento Rápido</a>
-                </div>
-                <div class="hero-image">
-                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDUwMCA0MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI1MDAiIGhlaWdodD0iNDAwIiByeD0iMTUiIGZpbGw9InVybCgjZ3JhZGllbnQxKSIvPgo8ZGVmcz4KPHN2ZyBpZD0iYm94IiB3aWR0aD0iODAiIGhlaWdodD0iODAiIHZpZXdCb3g9IjAgMCA4MCA4MCI+CjxyZWN0IHg9IjEwIiB5PSIyMCIgd2lkdGg9IjYwIiBoZWlnaHQ9IjUwIiByeD0iNSIgZmlsbD0iI2ZlYmIwZiIgc3Ryb2tlPSIjMjE0MTk0IiBzdHJva2Utd2lkdGg9IjIiLz4KPHJlY3QgeD0iMjAiIHk9IjEwIiB3aWR0aD0iNDAiIGhlaWdodD0iMjAiIHJ4PSIzIiBmaWxsPSIjMjE0MTk0Ii8+CjxsaW5lIHgxPSI0MCIgeTE9IjEwIiB4Mj0iNDAiIHkyPSIzMCIgc3Ryb2tlPSIjZmViYjBmIiBzdHJva2Utd2lkdGg9IjIiLz4KPC9zdmc+CjwvZGVmcz4KPHN2ZyB4PSI1MCIgeT0iNTAiPgo8dXNlIGhyZWY9IiNib3giLz4KPC9zdmc+CjxzdmcgeD0iMTgwIiB5PSI4MCI+Cjx1c2UgaHJlZj0iI2JveCIvPgo8L3N2Zz4KPHN2ZyB4PSIzMTAiIHk9IjEyMCI+Cjx1c2UgaHJlZj0iI2JveCIvPgo8L3N2Zz4KPHN2ZyB4PSIxMjAiIHk9IjIwMCI+Cjx1c2UgaHJlZj0iI2JveCIvPgo8L3N2Zz4KPHN2ZyB4PSIzNDAiIHk9IjI1MCI+Cjx1c2UgaHJlZj0iI2JveCIvPgo8L3N2Zz4KPGRlZnM+CjxsaW5lYXJHcmFkaWVudCBpZD0iZ3JhZGllbnQxIiB4MT0iMCUiIHkxPSIwJSIgeDI9IjEwMCUiIHkyPSIxMDAlIj4KPHN0b3Agb2Zmc2V0PSIwJSIgc3R5bGU9InN0b3AtY29sb3I6I2YwZjRmZjtzdG9wLW9wYWNpdHk6MSIgLz4KPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdHlsZT0ic3RvcC1jb2xvcjojZTZlZGZmO3N0b3Atb3BhY2l0eToxIiAvPgo8L2xpbmVhckdyYWRpZW50Pgo8L2RlZnM+Cjwvc3ZnPgo=" alt="Embalagens variadas para delivery, festas e eventos em Brasília DF">
-                </div>
+    <section id="inicio" class="relative min-h-screen flex items-center justify-center overflow-hidden" 
+         style="background-image: url('https://readdy.ai/api/search-image?query=modern%20packaging%20warehouse%20with%20cardboard%20boxes%2C%20plastic%20containers%2C%20and%20various%20professional%20packaging%20materials%20displayed%20in%20organized%20shelves%2C%20clean%20white%20background%20on%20left%20side%20for%20text%20overlay%2C%20professional%20lighting%2C%20minimalist%20industrial%20design%2C%20high%20quality%20commercial%20photography&width=1920&height=1080&seq=hero001&orientation=landscape'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+    <div class="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-transparent"></div>
+    <div class="relative w-full max-w-7xl mx-auto px-6 py-20">
+        <div class="max-w-2xl">
+            <h2 class="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+                Soluções Completas em <span class="text-primary">Embalagens</span>
+            </h2>
+            <p class="text-xl text-gray-600 mb-8 leading-relaxed">
+                Oferecemos uma ampla variedade de embalagens profissionais para todos os segmentos. Qualidade garantida, preços competitivos e entrega rápida.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4">
+                <a href="#produtos" class="bg-primary text-white px-8 py-4 !rounded-button text-lg font-semibold hover:bg-blue-700 transition-colors whitespace-nowrap text-center">
+                    Explorar Catálogo
+                </a>
+                <a href="https://wa.me/5561993177107" target="_blank" class="border-2 border-primary text-primary px-8 py-4 !rounded-button text-lg font-semibold hover:bg-primary hover:text-white transition-colors whitespace-nowrap text-center">
+                    Falar no WhatsApp
+                </a>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- Diferenciais -->
     <section class="diferenciais" id="diferenciais">
         <div class="container">
-            <h2 class="section-title">Nossos Diferenciais</h2>
+            <h2 class="section-title font-bold">
+                Nossos Diferenciais</h2>
             <div class="diferenciais-grid">
                 <div class="diferencial-item">
                     <div class="diferencial-icon">🚚</div>
@@ -87,150 +128,534 @@
     </section>
 
     <!-- Produtos -->
-    <section class="produtos" id="produtos">
-        <div class="container">
-            <h2 class="section-title">Nossos Produtos</h2>
-            <div class="produtos-grid">
-                <div class="produto-card">
-                    <div class="produto-image">🍔</div>
-                    <div class="produto-content">
-                        <h3>Descartavéis</h3>
-                        <p>Caixas, marmitas, sacolas e embalagens especializadas para food service. Resistentes e práticas para manter a qualidade dos seus pratos.</p>
-                        <a href="images/Descartaveis.pdf" class="produto-cta" target="_blank">Ver Catálogo</a>
+    <section class="produtos py-20 bg-white" id="produtos">
+        <div class="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-blue-800 mb-4">
+            Nossos Produtos
+            </h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto text-center mb-12 relative">
+                Encontre a embalagem ideal para seu negócio em nossa ampla seleção de produtos profissionais
+                <span class="absolute bottom-[-20px] left-1/2 transform -translate-x-1/2 w-20 h-1 bg-yellow-400 rounded-full"></span>
+            </p>
+            
+            <!-- Primeira linha: 4 itens no desktop -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 mb-6 lg:mb-8">
+                
+                <div class="produto-card bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 hover:-translate-y-1">
+                    <div class="produto-image h-64 bg-gradient-to-br from-blue-800 to-blue-900 flex items-center justify-center text-6xl text-white">🍔</div>
+                    <div class="produto-content p-6">
+                        <h3 class="text-xl font-bold text-blue-800 mb-4">Descartáveis</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">Caixas, marmitas, sacolas e embalagens especializadas para food service. Resistentes e práticas para manter a qualidade dos seus pratos.</p>
+                        <a href="images/Descartaveis.pdf" target="_blank" 
+                           class="produto-cta inline-block bg-blue-800 hover:bg-blue-900 text-white font-semibold py-3 px-6 rounded-full transition-all duration-300 hover:-translate-y-0.5">
+                            Ver Catálogo
+                        </a>
                     </div>
                 </div>
-                <div class="produto-card">
-                    <div class="produto-image">🎨</div>
-                    <div class="produto-content">
-                        <h3>Mercados e Açougues</h3>
-                        <p>Desenvolva a identidade da sua marca com embalagens customizadas. Logo, cores e design exclusivos para destacar seu negócio.</p>
-                        <a href="images/Mercado.pdf" class="produto-cta" target="_blank">Ver Catálogo</a>
+
+                <div class="produto-card bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 hover:-translate-y-1">
+                    <div class="produto-image h-64 bg-gradient-to-br from-blue-800 to-blue-900 flex items-center justify-content text-6xl text-white">🏪</div>
+                    <div class="produto-content p-6">
+                        <h3 class="text-xl font-bold text-blue-800 mb-4">Mercados e Açougues</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">Desenvolva a identidade da sua marca com embalagens customizadas. Logo, cores e design exclusivos para destacar seu negócio.</p>
+                        <a href="images/Mercado.pdf" target="_blank" 
+                           class="produto-cta inline-block bg-blue-800 hover:bg-blue-900 text-white font-semibold py-3 px-6 rounded-full transition-all duration-300 hover:-translate-y-0.5">
+                            Ver Catálogo
+                        </a>
                     </div>
                 </div>
-                <div class="produto-card">
-                    <div class="produto-image">🎉</div>
-                    <div class="produto-content">
-                        <h3>Hamburguerias e Lanchonetes</h3>
-                        <p>Utensílios descartáveis, copos, pratos e embalagens temáticas para eventos, festas e celebrações especiais.</p>
-                        <a href="images/Burguerlanche.pdf" class="produto-cta" target="_blank">Ver Catálogo</a>
+
+                <div class="produto-card bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 hover:-translate-y-1">
+                    <div class="produto-image h-64 bg-gradient-to-br from-blue-800 to-blue-900 flex items-center justify-center text-6xl text-white">🍟</div>
+                    <div class="produto-content p-6">
+                        <h3 class="text-xl font-bold text-blue-800 mb-4">Hamburguerias e Lanchonetes</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">Embalagens especializadas para hambúrgueres, batatas fritas e lanches. Mantém o calor e a qualidade dos seus produtos.</p>
+                        <a href="images/Burguerlanche.pdf" target="_blank" 
+                           class="produto-cta inline-block bg-blue-800 hover:bg-blue-900 text-white font-semibold py-3 px-6 rounded-full transition-all duration-300 hover:-translate-y-0.5">
+                            Ver Catálogo
+                        </a>
                     </div>
                 </div>
-                <div class="produto-card">
-                    <div class="produto-image">🎉</div>
-                    <div class="produto-content">
-                        <h3>Embalagens para Festas</h3>
-                        <p>Utensílios descartáveis, copos, pratos e embalagens temáticas para eventos, festas e celebrações especiais.</p>
-                        <a href="images/Festa.pdf" class="produto-cta" target="_blank">Ver Catálogo</a>
+
+                <div class="produto-card bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 hover:-translate-y-1">
+                    <div class="produto-image h-64 bg-gradient-to-br from-blue-800 to-blue-900 flex items-center justify-center text-6xl text-white">🎉</div>
+                    <div class="produto-content p-6">
+                        <h3 class="text-xl font-bold text-blue-800 mb-4">Embalagens para Festas</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">Utensílios descartáveis, copos, pratos e embalagens temáticas para eventos, festas e celebrações especiais.</p>
+                        <a href="images/Festa.pdf" target="_blank" 
+                           class="produto-cta inline-block bg-blue-800 hover:bg-blue-900 text-white font-semibold py-3 px-6 rounded-full transition-all duration-300 hover:-translate-y-0.5">
+                            Ver Catálogo
+                        </a>
                     </div>
                 </div>
-                <div class="produto-card">
-                    <div class="produto-image">🎉</div>
-                    <div class="produto-content">
-                        <h3>Higiene e Limpeza</h3>
-                        <p>Utensílios descartáveis, copos, pratos e embalagens temáticas para eventos, festas e celebrações especiais.</p>
-                        <a href="images/Higiene.pdf" class="produto-cta" target="_blank">Ver Catálogo</a>
+
+            </div>
+
+            <!-- Segunda linha: 3 itens centralizados no desktop -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 lg:max-w-4xl lg:mx-auto">
+
+                <div class="produto-card bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 hover:-translate-y-1">
+                    <div class="produto-image h-64 bg-gradient-to-br from-blue-800 to-blue-900 flex items-center justify-center text-6xl text-white">🧼</div>
+                    <div class="produto-content p-6">
+                        <h3 class="text-xl font-bold text-blue-800 mb-4">Higiene e Limpeza</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">Produtos de higiene e limpeza profissional para manter seu estabelecimento sempre limpo e seguro.</p>
+                        <a href="images/Higiene.pdf" target="_blank" 
+                           class="produto-cta inline-block bg-blue-800 hover:bg-blue-900 text-white font-semibold py-3 px-6 rounded-full transition-all duration-300 hover:-translate-y-0.5">
+                            Ver Catálogo
+                        </a>
                     </div>
                 </div>
-                <div class="produto-card">
-                    <div class="produto-image">🎉</div>
-                    <div class="produto-content">
-                        <h3>Diversos</h3>
-                        <p>Utensílios descartáveis, copos, pratos e embalagens temáticas para eventos, festas e celebrações especiais.</p>
-                        <a href="images/Diversos.pdf" class="produto-cta" target="_blank">Ver Catálogo</a>
+
+                <div class="produto-card bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 hover:-translate-y-1">
+                    <div class="produto-image h-64 bg-gradient-to-br from-blue-800 to-blue-900 flex items-center justify-center text-6xl text-white">📦</div>
+                    <div class="produto-content p-6">
+                        <h3 class="text-xl font-bold text-blue-800 mb-4">Diversos</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">Variados produtos e soluções para atender todas as necessidades do seu negócio com qualidade garantida.</p>
+                        <a href="images/Diversos.pdf" target="_blank" 
+                           class="produto-cta inline-block bg-blue-800 hover:bg-blue-900 text-white font-semibold py-3 px-6 rounded-full transition-all duration-300 hover:-translate-y-0.5">
+                            Ver Catálogo
+                        </a>
                     </div>
                 </div>
-                <div class="produto-card">
-                    <div class="produto-image">🎉</div>
-                    <div class="produto-content">
-                        <h3>Biodegradaveis</h3>
-                        <p>Utensílios descartáveis, copos, pratos e embalagens temáticas para eventos, festas e celebrações especiais.</p>
-                        <a href="images/Bio.pdf" class="produto-cta" target="_blank">Ver Catálogo</a>
+
+                <div class="produto-card bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 hover:-translate-y-1">
+                    <div class="produto-image h-64 bg-gradient-to-br from-blue-800 to-blue-900 flex items-center justify-center text-6xl text-white">🌱</div>
+                    <div class="produto-content p-6">
+                        <h3 class="text-xl font-bold text-blue-800 mb-4">Biodegradáveis</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">Produtos ecológicos e sustentáveis que respeitam o meio ambiente sem abrir mão da qualidade.</p>
+                        <a href="images/Bio.pdf" target="_blank" 
+                           class="produto-cta inline-block bg-blue-800 hover:bg-blue-900 text-white font-semibold py-3 px-6 rounded-full transition-all duration-300 hover:-translate-y-0.5">
+                            Ver Catálogo
+                        </a>
                     </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Sobre a Empresa -->
+    <section id="sobre" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <!-- Lado esquerdo: Conteúdo das abas -->
+                <div>
+                    <!-- Botões das abas -->
+                    <div class="flex space-x-2 mb-8">
+                        <button onclick="showTab('story')" 
+                                id="tab-story" 
+                                class="tab-button active flex items-center space-x-2 px-6 py-3 rounded-lg font-semibold transition-all duration-300">
+                            <i class="ri-book-line"></i>
+                            <span>Nossa Historia</span>
+                        </button>
+                        <button onclick="showTab('mission')" 
+                                id="tab-mission" 
+                                class="tab-button flex items-center space-x-2 px-6 py-3 rounded-lg font-semibold transition-all duration-300">
+                            <i class="ri-target-line"></i>
+                            <span>Nossa Missão</span>
+                        </button>
+                        <button onclick="showTab('choose')" 
+                                id="tab-choose" 
+                                class="tab-button flex items-center space-x-2 px-6 py-3 rounded-lg font-semibold transition-all duration-300">
+                            <i class="ri-award-line"></i>
+                            <span>Porque nos escolher?</span>
+                        </button>
+                    </div>
+
+                    <!-- Conteúdo da aba "Our Story" -->
+                    <div id="content-story" class="tab-content">
+                        <h3 class="text-4xl font-bold text-gray-900 mb-6">
+                            Atendendo Empresas e Pessoas Desde 2010
+                        </h3>
+                        <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+                            A PSR Embalagens começou como uma pequena distribuidora de embalagens em Brasília com um objetivo simples: fornecer às empresas produtos de embalagem de qualidade a preços competitivos. Ao longo dos anos, crescemos para nos tornar um dos fornecedores de embalagens mais confiáveis da região.                        </p>
+                        <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+                            Localizada no coração da CEASA, mantemos um grande estoque de produtos de embalagem prontos para entrega imediata. De pequenos restaurantes a grandes redes de varejo, atendemos empresas de todos os tamanhos com o mesmo compromisso com qualidade e atendimento.                        </p>
+                        <div class="bg-green-50 border-l-4 border-green-500 p-6 rounded-r-lg">
+                            <blockquote class="text-lg text-green-800 italic font-medium">
+                            "Acreditamos na construção de relacionamentos duradouros com nossos clientes através de produtos confiáveis e atendimento excepcional."                            </blockquote>
+                            <p class="text-green-600 font-semibold mt-2">— Equipe PSR Embalagens</p>
+                        </div>
+                    </div>
+
+                    <!-- Conteúdo da aba "Our Mission" -->
+                    <div id="content-mission" class="tab-content hidden">
+                        <h3 class="text-4xl font-bold text-gray-900 mb-6">
+                            Nossa <span class="text-secondary">Missão</span>
+                        </h3>
+                        <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+                            Nossa missão é fornecer embalagens de alta qualidade com preços competitivos, garantindo a satisfação total dos nossos clientes e contribuindo para o sucesso dos seus negócios.
+                        </p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 bg-primary text-white rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <i class="ri-leaf-line text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-900 mb-2">Sustentabilidade</h4>
+                                    <p class="text-gray-600">Oferecemos produtos biodegradáveis e ecológicos para um futuro sustentável.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 bg-primary text-white rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <i class="ri-shield-check-line text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-900 mb-2">Qualidade</h4>
+                                    <p class="text-gray-600">Todos os nossos produtos passam por rigoroso controle de qualidade.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-3 gap-5">
+                            <div class="text-center">
+                                <div class="text-3xl font-bold text-secondary mb-2">15+</div>
+                                <div class="text-gray-600">Anos de Experiência</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-3xl font-bold text-secondary mb-2">5000+</div>
+                                <div class="text-gray-600">Clientes Satisfeitos</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-3xl font-bold text-secondary mb-2">500+</div>
+                                <div class="text-gray-600">Produtos Disponíveis</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Conteúdo da aba "Why Choose Us" -->
+                    <div id="content-choose" class="tab-content hidden">
+                        <h3 class="text-4xl font-bold text-gray-900 mb-6">
+                            Por que escolher a <span class="text-secondary">PSR Embalagens</span>?
+                        </h3>
+                        <div class="space-y-6 mb-8">
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 bg-green-500 text-white rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <i class="ri-time-line text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-900 mb-2">Entrega Rápida</h4>
+                                    <p class="text-gray-600">Entregamos no mesmo dia ou no dia seguinte para a região de Brasília e CEASA.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 bg-blue-500 text-white rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <i class="ri-price-tag-3-line text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-900 mb-2">Preços Competitivos</h4>
+                                    <p class="text-gray-600">Oferecemos os melhores preços do mercado com condições especiais para grandes volumes.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 bg-purple-500 text-white rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <i class="ri-customer-service-2-line text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-900 mb-2">Atendimento Personalizado</h4>
+                                    <p class="text-gray-600">Nossa equipe especializada está sempre pronta para atender suas necessidades específicas.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-4">
+                                <div class="w-12 h-12 bg-orange-500 text-white rounded-lg flex items-center justify-center flex-shrink-0">
+                                    <i class="ri-truck-line text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-900 mb-2">Grande Estoque</h4>
+                                    <p class="text-gray-600">Mantemos um amplo estoque para garantir disponibilidade imediata dos produtos.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lado direito: Imagem -->
+                <div class="relative">
+                    <img src="https://readdy.ai/api/search-image?query=modern%20packaging%20warehouse%20interior%20with%20organized%20shelves%20full%20of%20cardboard%20boxes%20and%20packaging%20materials%2C%20professional%20lighting%2C%20clean%20industrial%20environment%2C%20workers%20in%20background%2C%20high%20quality%20commercial%20photography&width=600&height=500&seq=about001&orientation=landscape" 
+                         alt="PSR Embalagens - Depósito" class="w-full rounded-lg shadow-lg object-cover object-center">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Sobre -->
-    <section class="sobre" id="sobre">
-        <div class="container">
-            <div class="sobre-content">
-                <div class="sobre-text">
-                    <h2>Sobre a PSR EMBALAGENS</h2>
-                    <p>Somos uma empresa especializada em embalagens com foco no atendimento personalizado para pequenas e médias empresas do Distrito Federal. Nossa missão é oferecer soluções práticas e econômicas que ajudem nossos clientes a crescer e se destacar no mercado.</p>
-                    
-                    <p>Entendemos as necessidades específicas de restaurantes, mercados, indústrias e organizadores de eventos. Por isso, mantemos um estoque diversificado e oferecemos opções de personalização que atendem desde o empreendedor individual até empresas em expansão.</p>
-                    
-                    <div class="sobre-stats">
-                        <div class="stat-item">
-                            <div class="stat-number">500+</div>
-                            <div class="stat-label">Clientes Satisfeitos</div>
+    <!-- Localização -->
+    <section id="localizacao" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h3 class="text-4xl font-bold text-gray-900 mb-4">Nossa Localização</h3>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Visite nossa loja física ou entre em contato para conhecer nossos produtos
+                </p>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div class="relative rounded-lg overflow-hidden shadow-lg">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3839.2903327877243!2d-47.9464213!3d-15.788637900000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x935a311d2a52c945%3A0x3495b53058238b45!2sPSR%20Embalagens!5e0!3m2!1spt-BR!2sbr!4v1754508492863!5m2!1spt-BR!2sbr" 
+                        class="w-full h-96" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+                <div class="space-y-8">
+                    <div class="flex items-start space-x-4">
+                        <div class="w-12 h-12 flex items-center justify-center bg-[#214194] text-white rounded-lg flex-shrink-0">
+                            <i class="ri-map-pin-line text-xl"></i>
                         </div>
-                        <div class="stat-item">
-                            <div class="stat-number">300+</div>
-                            <div class="stat-label">Produtos Disponíveis</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">15+</div>
-                            <div class="stat-label">Anos de Experiência</div>
+                        <div>
+                            <h4 class="text-xl font-semibold text-gray-900 mb-2">Endereço</h4>
+                            <p class="text-gray-600">
+                                Rua das Embalagens, 1234<br>
+                                Distrito Industrial - São Paulo, SP<br>
+                                CEP: 01234-567
+                            </p>
                         </div>
                     </div>
-                </div>
-                <div class="sobre-image">
-                    <!-- Icon será renderizado via CSS -->
+                    <div class="flex items-start space-x-4">
+                        <div class="w-12 h-12 flex items-center justify-center bg-[#214194] text-white rounded-lg flex-shrink-0">
+                            <i class="ri-time-line text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-semibold text-gray-900 mb-2">Horário de Funcionamento</h4>
+                            <p class="text-gray-600">
+                                Segunda a Sexta: 8h às 18h<br>
+                                Sábado: 8h às 12h<br>
+                                Domingo: Fechado
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-4">
+                        <div class="w-12 h-12 flex items-center justify-center bg-[#214194] text-white rounded-lg flex-shrink-0">
+                            <i class="ri-phone-line text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-semibold text-gray-900 mb-2">Contato</h4>
+                            <p class="text-gray-600">
+                                Telefone: (11) 3456-7890<br>
+                                WhatsApp: (11) 99876-5432<br>
+                                Email: contato@embalamax.com.br
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Contato -->
-    <section class="contato" id="contato">
-        <div class="container">
-            <h2 class="section-title">Entre em Contato</h2>
-            <div class="contato-content">
-                <div class="contato-form">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3839.2903327877243!2d-47.9464213!3d-15.788637900000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x935a311d2a52c945%3A0x3495b53058238b45!2sPSR%20Embalagens!5e0!3m2!1spt-BR!2sbr!4v1754399465002!5m2!1spt-BR!2sbr"
-                    width="600"
-                    height="540"
-                    style="border:0; border-radius: 15px; width: 100%;"
-                    allowfullscreen=""
-                    loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade">
-                    </iframe>
+    <section id="contato" class="py-20 bg-gray-50">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h3 class="text-4xl font-bold text-gray-900 mb-4">Entre em Contato</h3>
+                <p class="text-xl text-gray-600">
+                    Tem alguma dúvida ou precisa de um orçamento? Estamos aqui para ajudar!
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <!-- Lado esquerdo: Contatos -->
+                <div class="space-y-6">
+                    <!-- WhatsApp -->
+                    <div class="bg-white p-6 rounded-lg shadow-sm">
+                        <div class="flex items-center space-x-4 mb-4">
+                            <div class="w-12 h-12 flex items-center justify-center bg-green-100 text-green-600 rounded-lg">
+                                <i class="ri-whatsapp-line text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-semibold text-gray-900">WhatsApp</h4>
+                                <p class="text-gray-600">(11) 99876-5432</p>
+                            </div>
+                        </div>
+                        <button class="w-full bg-green-500 text-white py-3 rounded-lg font-semibold hover:bg-green-600 transition-colors whitespace-nowrap">
+                            Conversar no WhatsApp
+                        </button>
+                    </div>
+
+                    <!-- Telefone (sem botão) -->
+                    <div class="bg-white p-6 rounded-lg shadow-sm">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 flex items-center justify-center bg-blue-100 text-blue-600 rounded-lg">
+                                <i class="ri-phone-line text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-semibold text-gray-900">Telefone</h4>
+                                <p class="text-gray-600">(11) 3456-7890</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="bg-white p-6 rounded-lg shadow-sm">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 flex items-center justify-center bg-gray-100 text-gray-600 rounded-lg">
+                                <i class="ri-mail-line text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-semibold text-gray-900">Email</h4>
+                                <p class="text-gray-600">contato@psrembalagens.com.br</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="contato-info">
-                    <h3>Informações de Contato</h3>
-                    <div class="info-item">
-                        <i>📍</i>
-                        <div>
-                            <strong>Endereço</strong><br>
-                            SIA Trecho 10,05 PAV B-10B, BOX 07<br>
-                            CEASA, Guará, Brasília - DF<br>
-                            CEP: 71200-100
+
+                <!-- Lado direito: Google Reviews -->
+                <div class="bg-white p-8 rounded-lg shadow-sm">
+                    <div class="flex items-center justify-between mb-6">
+                        <h4 class="text-2xl font-bold text-gray-900">Avaliações Google</h4>
+                        <div class="flex items-center space-x-2">
+                            <div class="flex text-yellow-400">
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                                <i class="ri-star-fill"></i>
+                            </div>
+                            <span class="text-gray-600 font-semibold">5.0</span>
                         </div>
                     </div>
-                    <div class="info-item">
-                        <i>📞</i>
-                        <div>
-                            <strong>Telefone</strong><br>
-                            (61) 99317-7107<br>
-                            (61) 3333-4444
+
+                    <div class="space-y-6 max-h-96 overflow-y-auto">
+                        <!-- Review 1 - Carlos Henrique -->
+                        <div class="border-b border-gray-100 pb-4">
+                            <div class="flex items-start space-x-3">
+                                <div class="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white font-semibold text-xs">
+                                    CH
+                                </div>
+                                <div class="flex-1">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <div>
+                                            <h5 class="font-semibold text-gray-900">Carlos Henrique</h5>
+                                            <p class="text-xs text-gray-500">2 avaliações • 0 foto</p>
+                                        </div>
+                                        <div class="flex text-yellow-400 text-sm">
+                                            <i class="ri-star-fill"></i>
+                                            <i class="ri-star-fill"></i>
+                                            <i class="ri-star-fill"></i>
+                                            <i class="ri-star-fill"></i>
+                                            <i class="ri-star-fill"></i>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center space-x-2 mb-2">
+                                        <span class="text-xs text-gray-400">Ontem</span>
+                                        <span class="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded">Novo</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Review 2 - Alcides Moreira -->
+                        <div class="border-b border-gray-100 pb-4">
+                            <div class="flex items-start space-x-3">
+                                <div class="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center text-white font-semibold text-xs">
+                                    AM
+                                </div>
+                                <div class="flex-1">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <div>
+                                            <h5 class="font-semibold text-gray-900">Alcides Moreira</h5>
+                                            <p class="text-xs text-gray-500">1 avaliação • 0 foto</p>
+                                        </div>
+                                        <div class="flex text-yellow-400 text-sm">
+                                            <i class="ri-star-fill"></i>
+                                            <i class="ri-star-fill"></i>
+                                            <i class="ri-star-fill"></i>
+                                            <i class="ri-star-fill"></i>
+                                            <i class="ri-star-fill"></i>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center space-x-2 mb-2">
+                                        <span class="text-xs text-gray-400">Há 2 dias</span>
+                                        <span class="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded">Novo</span>
+                                    </div>
+                                    <p class="text-gray-600 text-sm leading-relaxed">
+                                        Atendimento rápido e entrega no dia marcado!!! Parabéns
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Review 3 - Margarete -->
+                        <div class="border-b border-gray-100 pb-4">
+                            <div class="flex items-start space-x-3">
+                                <div class="w-10 h-10 bg-purple-600 rounded-full flex items-center justify-center text-white font-semibold text-xs">
+                                    MA
+                                </div>
+                                <div class="flex-1">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <div>
+                                            <h5 class="font-semibold text-gray-900">Margarete Simplicia da Silva aguilar</h5>
+                                            <p class="text-xs text-gray-500">1 avaliação • 0 foto</p>
+                                        </div>
+                                        <div class="flex text-yellow-400 text-sm">
+                                            <i class="ri-star-fill"></i>
+                                            <i class="ri-star-fill"></i>
+                                            <i class="ri-star-fill"></i>
+                                            <i class="ri-star-fill"></i>
+                                            <i class="ri-star-fill"></i>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center space-x-2 mb-2">
+                                        <span class="text-xs text-gray-400">Há 1 semana</span>
+                                        <span class="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded">Novo</span>
+                                    </div>
+                                    <!-- Resposta da empresa -->
+                                    <div class="mt-3 ml-4 p-3 bg-gray-50 rounded-lg border-l-4 border-primary">
+                                        <div class="flex items-center space-x-2 mb-1">
+                                            <span class="text-sm font-semibold text-primary">PSR Embalagens</span>
+                                            <span class="text-xs bg-primary text-white px-2 py-1 rounded">Proprietário</span>
+                                        </div>
+                                        <p class="text-sm text-gray-600">Obrigado pela avaliação! 😊</p>
+                                        <span class="text-xs text-gray-400">Há 4 dias</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Review 4 - Ranna Santos -->
+                        <div class="pb-4">
+                            <div class="flex items-start space-x-3">
+                                <div class="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center text-white font-semibold text-xs">
+                                    RS
+                                </div>
+                                <div class="flex-1">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <div>
+                                            <h5 class="font-semibold text-gray-900">Ranna Santos</h5>
+                                            <p class="text-xs text-gray-500">1 avaliação • 0 foto</p>
+                                        </div>
+                                        <div class="flex text-yellow-400 text-sm">
+                                            <i class="ri-star-fill"></i>
+                                            <i class="ri-star-fill"></i>
+                                            <i class="ri-star-fill"></i>
+                                            <i class="ri-star-fill"></i>
+                                            <i class="ri-star-fill"></i>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center space-x-2 mb-2">
+                                        <span class="text-xs text-gray-400">Há 3 semanas</span>
+                                        <span class="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded">Novo</span>
+                                    </div>
+                                    <!-- Resposta da empresa -->
+                                    <div class="mt-3 ml-4 p-3 bg-gray-50 rounded-lg border-l-4 border-primary">
+                                        <div class="flex items-center space-x-2 mb-1">
+                                            <span class="text-sm font-semibold text-primary">PSR Embalagens</span>
+                                            <span class="text-xs bg-primary text-white px-2 py-1 rounded">Proprietário</span>
+                                        </div>
+                                        <p class="text-sm text-gray-600">Obrigado pela avaliação! 😊</p>
+                                        <span class="text-xs text-gray-400">Há 4 dias</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="info-item">
-                        <i>📧</i>
-                        <div>
-                            <strong>E-mail</strong><br>
-                            comercial@santaritaembalagens.com.br
-                        </div>
-                    </div>
-                    <div class="info-item">
-                        <i>🕒</i>
-                        <div>
-                            <strong>Horário de Funcionamento</strong><br>
-                            Segunda a Sexta: 5h às 17h<br>
-                            Sábado: 5h às 12h
-                        </div>
+
+                    <!-- Botão Ver Mais Reviews -->
+                    <div class="mt-6 pt-4 border-t border-gray-100">
+                        <a href="https://www.google.com/search?q=psr+embalagens&ie=UTF-8" 
+                           target="_blank"
+                           class="w-full bg-primary text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors flex items-center justify-center space-x-2">
+                            <i class="ri-google-fill"></i>
+                            <span>Ver Todas as Avaliações</span>
+                        </a>
                     </div>
                 </div>
             </div>
