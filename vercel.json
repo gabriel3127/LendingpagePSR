@@ -1,11 +1,23 @@
 {
+  "redirects": [
+    {
+      "source": "http://santaritaembalagens.com.br/(.*)",
+      "destination": "https://santaritaembalagens.com.br/$1",
+      "permanent": true
+    },
+    {
+      "source": "http://www.santaritaembalagens.com.br/(.*)",
+      "destination": "https://www.santaritaembalagens.com.br/$1", 
+      "permanent": true
+    }
+  ],
   "headers": [
     {
-      "source": "/sitemap.xml",
+      "source": "/(.*)",
       "headers": [
         {
-          "key": "Content-Type",
-          "value": "application/xml; charset=utf-8"
+          "key": "Strict-Transport-Security",
+          "value": "max-age=31536000; includeSubDomains"
         }
       ]
     }
