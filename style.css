@@ -270,6 +270,11 @@ nav {
     font-size: 1.3rem;
 }
 
+.dif {
+    width: auto;
+    height: auto;
+}
+
 /* Produtos */
 .produtos {
     padding: 80px 0;
