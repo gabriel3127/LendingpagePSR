@@ -26,6 +26,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize Schema.org structured data
     initSchemaOrg();
+    
+    // Initialize about carousel
+    initAboutCarousel();
 });
 
 // Page loading animation
@@ -490,6 +493,110 @@ function initSchemaOrg() {
     document.head.appendChild(schemaScript);
     
     console.log('Schema.org structured data injected successfully');
+}
+
+// Initialize About Carousel
+function initAboutCarousel() {
+    const carousel = document.getElementById('about-carousel');
+    if (!carousel) return;
+    
+    const items = carousel.querySelectorAll('.carousel-item');
+    const indicators = carousel.querySelectorAll('.carousel-indicator');
+    const prevButton = carousel.querySelector('.carousel-prev');
+    const nextButton = carousel.querySelector('.carousel-next');
+    let currentIndex = 0;
+    let interval;
+    
+    // Function to show a specific slide
+    function showSlide(index) {
+        // Handle index bounds
+        if (index < 0) {
+            index = items.length - 1;
+        } else if (index >= items.length) {
+            index = 0;
+        }
+        
+        // Remove active class from all items and indicators
+        items.forEach(item => item.classList.remove('active'));
+        indicators.forEach(indicator => indicator.classList.remove('active'));
+        
+        // Add active class to current item and indicator
+        items[index].classList.add('active');
+        indicators[index].classList.add('active');
+        
+        // Update current index
+        currentIndex = index;
+    }
+    
+    // Function to show next slide
+    function nextSlide() {
+        showSlide(currentIndex + 1);
+    }
+    
+    // Function to show previous slide
+    function prevSlide() {
+        showSlide(currentIndex - 1);
+    }
+    
+    // Start automatic rotation
+    function startCarousel() {
+        stopCarousel(); // Clear any existing interval first
+        interval = setInterval(nextSlide, 5000); // Change slide every 5 seconds
+    }
+    
+    // Stop automatic rotation
+    function stopCarousel() {
+        if (interval) {
+            clearInterval(interval);
+        }
+    }
+    
+    // Add click event listeners to navigation buttons
+    if (nextButton) {
+        nextButton.addEventListener('click', () => {
+            nextSlide();
+            stopCarousel();
+            startCarousel(); // Restart the timer after manual navigation
+        });
+    }
+    
+    if (prevButton) {
+        prevButton.addEventListener('click', () => {
+            prevSlide();
+            stopCarousel();
+            startCarousel(); // Restart the timer after manual navigation
+        });
+    }
+    
+    // Add click event listeners to indicators
+    indicators.forEach((indicator, index) => {
+        indicator.addEventListener('click', () => {
+            showSlide(index);
+            stopCarousel();
+            startCarousel(); // Restart the timer after manual navigation
+        });
+    });
+    
+    // Add keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') {
+            prevSlide();
+            stopCarousel();
+            startCarousel(); // Restart the timer after manual navigation
+        } else if (e.key === 'ArrowRight') {
+            nextSlide();
+            stopCarousel();
+            startCarousel(); // Restart the timer after manual navigation
+        }
+    });
+    
+    // Pause carousel on hover
+    carousel.addEventListener('mouseenter', stopCarousel);
+    carousel.addEventListener('mouseleave', startCarousel);
+    
+    // Initialize carousel
+    showSlide(0);
+    startCarousel();
 }
 
 function showTab(tabName) {

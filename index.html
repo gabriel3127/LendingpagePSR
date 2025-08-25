@@ -633,10 +633,47 @@
                     </div>
                 </div>
 
-                <!-- Lado direito: Imagem -->
+                <!-- Lado direito: Carrossel de Imagens -->
                 <div class="relative flex items-center justify-center h-full">
-                    <img src="images/2025-07-21.webp" 
-                         alt="PSR Embalagens - Depósito" class="rounded-lg shadow-lg object-cover" style="max-height: 627px; max-width: 100%;">
+                    <div id="about-carousel" class="w-full relative">
+                        <!-- Botões de navegação -->
+                        <button class="carousel-arrow carousel-prev" aria-label="Imagem anterior">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+                                <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"></path>
+                            </svg>
+                        </button>
+                        <button class="carousel-arrow carousel-next" aria-label="Próxima imagem">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+                                <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path>
+                            </svg>
+                        </button>
+                        
+                        <!-- Imagens do carrossel -->
+                        <div class="carousel-item active">
+                            <img src="images/2025-07-21.webp" 
+                                alt="PSR Embalagens - Depósito" class="rounded-lg shadow-lg object-cover w-full" style="max-height: 627px;">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="images/loja fora.webp" 
+                                alt="PSR Embalagens - Produtos Descartáveis" class="rounded-lg shadow-lg object-cover w-full" style="max-height: 627px;">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="images/estoque1.webp" 
+                                alt="PSR Embalagens - Produtos Diversos" class="rounded-lg shadow-lg object-cover w-full" style="max-height: 627px;">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="images/estoque2.webp" 
+                                alt="PSR Embalagens - Produtos Diversos" class="rounded-lg shadow-lg object-cover w-full" style="max-height: 627px;">
+                        </div>
+                        
+                        <!-- Indicadores do carrossel -->
+                        <div class="carousel-indicators flex justify-center mt-4 space-x-3">
+                            <button class="carousel-indicator active" aria-label="Imagem 1"></button>
+                            <button class="carousel-indicator" aria-label="Imagem 2"></button>
+                            <button class="carousel-indicator" aria-label="Imagem 3"></button>
+                            <button class="carousel-indicator" aria-label="Imagem 4"></button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
