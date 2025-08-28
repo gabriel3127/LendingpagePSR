@@ -643,3 +643,69 @@ window.PSREMBALAGENS = {
     showSuccessMessage,
     initSchemaOrg
 };
+
+// Formulário de Contato
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Coleta os dados do formulário
+    const formData = {
+        nome: document.getElementById('nome').value,
+        telefone: document.getElementById('telefone').value,
+        email: document.getElementById('email').value,
+        descricao: document.getElementById('descricao').value
+    };
+    
+    // Cria o corpo do email
+    const emailBody = `
+Novo contato do site:
+
+Nome: ${formData.nome}
+Telefone: ${formData.telefone}
+Email: ${formData.email}
+Descrição: ${formData.descricao}
+
+---
+Enviado através do formulário de contato do site Santa Rita Embalagens
+    `;
+    
+    // Cria o link mailto
+    const mailtoLink = `mailto:cadastro@santaritaembalagens.com.br?subject=Novo Contato - ${formData.nome}&body=${encodeURIComponent(emailBody)}`;
+    
+    // Abre o cliente de email
+    window.location.href = mailtoLink;
+    
+    // Feedback visual
+    const button = e.target.querySelector('button[type="submit"]');
+    const originalText = button.innerHTML;
+    button.innerHTML = '<i class="ri-check-line mr-2"></i>Enviado!';
+    button.disabled = true;
+    
+    // Reset após 3 segundos
+    setTimeout(() => {
+        button.innerHTML = originalText;
+        button.disabled = false;
+        document.getElementById('contactForm').reset();
+    }, 3000);
+    
+    // Google Analytics (se configurado)
+    if (typeof gtag !== 'undefined') {
+        gtag('event', 'form_submit', {
+            'event_category': 'engagement',
+            'event_label': 'contact_form'
+        });
+    }
+});
+
+// Máscara para telefone
+document.getElementById('telefone').addEventListener('input', function(e) {
+    let value = e.target.value.replace(/\D/g, '');
+    if (value.length >= 11) {
+        value = value.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
+    } else if (value.length >= 7) {
+        value = value.replace(/(\d{2})(\d{4})(\d{0,4})/, '($1) $2-$3');
+    } else if (value.length >= 3) {
+        value = value.replace(/(\d{2})(\d{0,5})/, '($1) $2');
+    }
+    e.target.value = value;
+});
