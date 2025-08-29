@@ -644,60 +644,151 @@ window.PSREMBALAGENS = {
     initSchemaOrg
 };
 
+// Inicializar EmailJS
+(function() {
+    emailjs.init("CBpvvLBOJW0FYVHHh"); // Substitua pela sua chave pública real
+})();
+
 // Formulário de Contato
 document.getElementById('contactForm').addEventListener('submit', function(e) {
     e.preventDefault();
     
     // Coleta os dados do formulário
     const formData = {
-        nome: document.getElementById('nome').value,
-        telefone: document.getElementById('telefone').value,
-        email: document.getElementById('email').value,
-        descricao: document.getElementById('descricao').value
+        nome: document.getElementById('nome').value.trim(),
+        telefone: document.getElementById('telefone').value.trim(),
+        email: document.getElementById('email').value.trim(),
+        descricao: document.getElementById('descricao').value.trim()
     };
     
-    // Cria o corpo do email
-    const emailBody = `
-Novo contato do site:
-
-Nome: ${formData.nome}
-Telefone: ${formData.telefone}
-Email: ${formData.email}
-Descrição: ${formData.descricao}
-
----
-Enviado através do formulário de contato do site Santa Rita Embalagens
-    `;
+    // Validação mais robusta
+    if (!formData.nome || !formData.telefone || !formData.email || !formData.descricao) {
+        showMessage('Por favor, preencha todos os campos obrigatórios.', 'error');
+        return;
+    }
     
-    // Cria o link mailto
-    const mailtoLink = `mailto:cadastro@santaritaembalagens.com.br?subject=Novo Contato - ${formData.nome}&body=${encodeURIComponent(emailBody)}`;
+    // Validar formato do email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+        showMessage('Por favor, insira um email válido.', 'error');
+        return;
+    }
     
-    // Abre o cliente de email
-    window.location.href = mailtoLink;
-    
-    // Feedback visual
+    // Feedback visual - carregando
     const button = e.target.querySelector('button[type="submit"]');
     const originalText = button.innerHTML;
-    button.innerHTML = '<i class="ri-check-line mr-2"></i>Enviado!';
+    button.innerHTML = '<i class="ri-loader-4-line animate-spin mr-2"></i>Enviando...';
     button.disabled = true;
     
-    // Reset após 3 segundos
-    setTimeout(() => {
-        button.innerHTML = originalText;
-        button.disabled = false;
-        document.getElementById('contactForm').reset();
-    }, 3000);
+    // Parâmetros para o template do EmailJS (sem to_email)
+    const templateParams = {
+        from_name: formData.nome,
+        from_email: formData.email,
+        phone: formData.telefone,
+        message: formData.descricao,
+        reply_to: formData.email
+    };
     
-    // Google Analytics (se configurado)
-    if (typeof gtag !== 'undefined') {
-        gtag('event', 'form_submit', {
-            'event_category': 'engagement',
-            'event_label': 'contact_form'
+    console.log('Enviando dados:', templateParams); // Para debug
+    
+    // Enviar email usando EmailJS
+    emailjs.send('service_1irc3hk', 'template_0hhugyn', templateParams)
+        .then(function(response) {
+            console.log('Email enviado com sucesso!', response.status, response.text);
+            
+            // Mostrar mensagem de sucesso
+            showSuccessMessage();
+            
+            // Reset do formulário
+            document.getElementById('contactForm').reset();
+            
+            // Google Analytics (se configurado)
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'form_submit', {
+                    'event_category': 'engagement',
+                    'event_label': 'contact_form_success'
+                });
+            }
+        })
+        .catch(function(error) {
+            console.error('Erro detalhado:', error);
+            console.error('Status:', error.status);
+            console.error('Text:', error.text);
+            showMessage('Erro ao enviar mensagem. Tente novamente ou entre em contato pelo WhatsApp.', 'error');
+            
+            // Google Analytics para erro
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'form_error', {
+                    'event_category': 'engagement',
+                    'event_label': 'contact_form_error'
+                });
+            }
+        })
+        .finally(function() {
+            // Restaurar botão
+            button.innerHTML = originalText;
+            button.disabled = false;
         });
-    }
 });
 
-// Máscara para telefone
+// Função para mostrar mensagem de sucesso
+function showSuccessMessage() {
+    // Criar modal de sucesso
+    const modal = document.createElement('div');
+    modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
+    modal.innerHTML = `
+        <div class="bg-white p-8 rounded-lg shadow-xl max-w-md mx-4 text-center">
+            <div class="mb-4">
+                <i class="ri-check-double-line text-5xl text-green-500"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-4">Mensagem Enviada!</h3>
+            <p class="text-gray-600 mb-6">
+                Obrigado pelo seu contato! Recebemos suas informações e entraremos em contato assim que possível.
+            </p>
+            <button onclick="this.parentElement.parentElement.remove()" 
+                    class="bg-primary text-white px-6 py-2 rounded-lg hover:bg-primary-dark transition-colors">
+                Fechar
+            </button>
+        </div>
+    `;
+    
+    document.body.appendChild(modal);
+    
+    // Remover modal automaticamente após 5 segundos
+    setTimeout(() => {
+        if (modal.parentElement) {
+            modal.remove();
+        }
+    }, 5000);
+}
+
+// Função para mostrar mensagens de erro
+function showMessage(message, type = 'info') {
+    const alertDiv = document.createElement('div');
+    alertDiv.className = `fixed top-4 right-4 p-4 rounded-lg shadow-lg z-50 ${
+        type === 'error' ? 'bg-red-500 text-white' : 'bg-blue-500 text-white'
+    }`;
+    alertDiv.innerHTML = `
+        <div class="flex items-center">
+            <i class="${type === 'error' ? 'ri-error-warning-line' : 'ri-information-line'} mr-2"></i>
+            <span>${message}</span>
+            <button onclick="this.parentElement.parentElement.remove()" class="ml-4 text-white hover:text-gray-200">
+                <i class="ri-close-line"></i>
+            </button>
+        </div>
+    `;
+    
+    document.body.appendChild(alertDiv);
+    
+    // Remover automaticamente após 5 segundos
+    setTimeout(() => {
+        if (alertDiv.parentElement) {
+            alertDiv.remove();
+        }
+    }, 5000);
+}
+
+// Máscara para telefone (mantém a mesma)
 document.getElementById('telefone').addEventListener('input', function(e) {
     let value = e.target.value.replace(/\D/g, '');
     if (value.length >= 11) {
