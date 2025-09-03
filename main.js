@@ -160,46 +160,6 @@ Enviei este contato através do site da EmbalaDF.`;
     }
 }
 
-// Success message function
-function showSuccessMessage(message) {
-    // Create a custom success notification
-    const notification = document.createElement('div');
-    notification.className = 'success-notification';
-    notification.innerHTML = `
-        <div class="notification-content">
-            <span class="notification-icon">✅</span>
-            <span class="notification-text">${message}</span>
-        </div>
-    `;
-    
-    // Add styles
-    notification.style.cssText = `
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        background: #4CAF50;
-        color: white;
-        padding: 1rem 1.5rem;
-        border-radius: 8px;
-        box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
-        z-index: 9999;
-        animation: slideInRight 0.3s ease;
-        max-width: 300px;
-    `;
-    
-    document.body.appendChild(notification);
-    
-    // Remove notification after 4 seconds
-    setTimeout(() => {
-        notification.style.animation = 'slideOutRight 0.3s ease';
-        setTimeout(() => {
-            if (notification.parentNode) {
-                notification.parentNode.removeChild(notification);
-            }
-        }, 300);
-    }, 4000);
-}
-
 // Header scroll effect
 function initHeaderScrollEffect() {
     const header = document.querySelector('header');
@@ -646,7 +606,13 @@ window.PSREMBALAGENS = {
 
 // Inicializar EmailJS
 (function() {
-    emailjs.init("CBpvvLBOJW0FYVHHh"); // Substitua pela sua chave pública real
+    // Usar configuração do config.js ou fallback
+    const publicKey = window.CONFIG?.EMAILJS_PUBLIC_KEY || "SUA_PUBLIC_KEY_AQUI";
+    emailjs.init(publicKey);
+    
+    if (!window.CONFIG?.EMAILJS_PUBLIC_KEY) {
+        console.warn('⚠️ Configurações do EmailJS não encontradas. Verifique se config.js foi carregado.');
+    }
 })();
 
 // Formulário de Contato
@@ -661,7 +627,42 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
         descricao: document.getElementById('descricao').value.trim()
     };
     
-    // Validação mais robusta
+    // Validação avançada
+    function validateFormData(formData) {
+        // Verificar campos obrigatórios
+        if (!formData.nome || !formData.telefone || !formData.email || !formData.descricao) {
+            return { valid: false, message: 'Todos os campos são obrigatórios.' };
+        }
+        
+        // Validar nome (mínimo 2 palavras)
+        if (formData.nome.trim().split(' ').length < 2) {
+            return { valid: false, message: 'Por favor, insira seu nome completo.' };
+        }
+        
+        // Validar email
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(formData.email)) {
+            return { valid: false, message: 'Email inválido.' };
+        }
+        
+        // Validar telefone brasileiro
+        const phoneRegex = /^\(?\d{2}\)?[\s-]?9?\d{4}[\s-]?\d{4}$/;
+        if (!phoneRegex.test(formData.telefone.replace(/\D/g, ''))) {
+            return { valid: false, message: 'Telefone inválido.' };
+        }
+        
+        // Validar tamanho da mensagem
+        if (formData.descricao.length < 10) {
+            return { valid: false, message: 'Mensagem muito curta (mínimo 10 caracteres).' };
+        }
+        
+        if (formData.descricao.length > 1000) {
+            return { valid: false, message: 'Mensagem muito longa (máximo 1000 caracteres).' };
+        }
+        
+        return { valid: true };
+    }
+    
     if (!formData.nome || !formData.telefone || !formData.email || !formData.descricao) {
         showMessage('Por favor, preencha todos os campos obrigatórios.', 'error');
         return;
@@ -680,7 +681,11 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
     button.innerHTML = '<i class="ri-loader-4-line animate-spin mr-2"></i>Enviando...';
     button.disabled = true;
     
-    // Parâmetros para o template do EmailJS (sem to_email)
+    // Usar configurações do config.js
+    const serviceId = window.CONFIG?.EMAILJS_SERVICE_ID || 'SEU_SERVICE_ID';
+    const templateId = window.CONFIG?.EMAILJS_TEMPLATE_ID || 'SEU_TEMPLATE_ID';
+    
+    // Parâmetros para o template do EmailJS
     const templateParams = {
         from_name: formData.nome,
         from_email: formData.email,
@@ -689,10 +694,10 @@ document.getElementById('contactForm').addEventListener('submit', function(e) {
         reply_to: formData.email
     };
     
-    console.log('Enviando dados:', templateParams); // Para debug
+    console.log('Enviando dados:', templateParams);
     
     // Enviar email usando EmailJS
-    emailjs.send('service_1irc3hk', 'template_0hhugyn', templateParams)
+    emailjs.send(serviceId, templateId, templateParams)
         .then(function(response) {
             console.log('Email enviado com sucesso!', response.status, response.text);
             
@@ -788,7 +793,7 @@ function showMessage(message, type = 'info') {
     }, 5000);
 }
 
-// Máscara para telefone (mantém a mesma)
+// Máscara para telefone
 document.getElementById('telefone').addEventListener('input', function(e) {
     let value = e.target.value.replace(/\D/g, '');
     if (value.length >= 11) {
@@ -800,3 +805,119 @@ document.getElementById('telefone').addEventListener('input', function(e) {
     }
     e.target.value = value;
 });
+
+// Rate limiting para emails
+const EMAIL_RATE_LIMIT = {
+    maxEmails: 3, // máximo 3 emails por sessão
+    timeWindow: 60000, // 1 minuto
+    attempts: JSON.parse(localStorage.getItem('emailAttempts') || '[]')
+};
+
+function checkRateLimit() {
+    const now = Date.now();
+    
+    // Remover tentativas antigas
+    EMAIL_RATE_LIMIT.attempts = EMAIL_RATE_LIMIT.attempts.filter(
+        attempt => now - attempt < EMAIL_RATE_LIMIT.timeWindow
+    );
+    
+    if (EMAIL_RATE_LIMIT.attempts.length >= EMAIL_RATE_LIMIT.maxEmails) {
+        return false;
+    }
+    
+    EMAIL_RATE_LIMIT.attempts.push(now);
+    localStorage.setItem('emailAttempts', JSON.stringify(EMAIL_RATE_LIMIT.attempts));
+    return true;
+}
+
+// Event listener único para o formulário de contato
+/*document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Verificar rate limit
+    if (!checkRateLimit()) {
+        showMessage('Muitas tentativas. Aguarde 1 minuto antes de tentar novamente.', 'error');
+        return;
+    }
+    
+    // Coleta os dados do formulário
+    const formData = {
+        nome: document.getElementById('nome').value.trim(),
+        telefone: document.getElementById('telefone').value.trim(),
+        email: document.getElementById('email').value.trim(),
+        descricao: document.getElementById('descricao').value.trim()
+    };
+    
+    // Validação robusta
+    if (!formData.nome || !formData.telefone || !formData.email || !formData.descricao) {
+        showMessage('Por favor, preencha todos os campos obrigatórios.', 'error');
+        return;
+    }
+    
+    // Validar formato do email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+        showMessage('Por favor, insira um email válido.', 'error');
+        return;
+    }
+    
+    // Feedback visual - carregando
+    const button = e.target.querySelector('button[type="submit"]');
+    const originalText = button.innerHTML;
+    button.innerHTML = '<i class="ri-loader-4-line animate-spin mr-2"></i>Enviando...';
+    button.disabled = true;
+    
+    // Usar configurações do config.js
+    const serviceId = window.CONFIG?.EMAILJS_SERVICE_ID || 'SEU_SERVICE_ID';
+    const templateId = window.CONFIG?.EMAILJS_TEMPLATE_ID || 'SEU_TEMPLATE_ID';
+    
+    // Parâmetros para o template do EmailJS
+    const templateParams = {
+        from_name: formData.nome,
+        from_email: formData.email,
+        phone: formData.telefone,
+        message: formData.descricao,
+        reply_to: formData.email
+    };
+    
+    console.log('Enviando dados:', templateParams);
+    
+    // Enviar email usando EmailJS
+    emailjs.send(serviceId, templateId, templateParams)
+        .then(function(response) {
+            console.log('Email enviado com sucesso!', response.status, response.text);
+            
+            // Mostrar mensagem de sucesso
+            showSuccessMessage();
+            
+            // Reset do formulário
+            document.getElementById('contactForm').reset();
+            
+            // Google Analytics (se configurado)
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'form_submit', {
+                    'event_category': 'engagement',
+                    'event_label': 'contact_form_success'
+                });
+            }
+        })
+        .catch(function(error) {
+            console.error('Erro detalhado:', error);
+            console.error('Status:', error.status);
+            console.error('Text:', error.text);
+            showMessage('Erro ao enviar mensagem. Tente novamente ou entre em contato pelo WhatsApp.', 'error');
+            
+            // Google Analytics para erro
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'form_error', {
+                    'event_category': 'engagement',
+                    'event_label': 'contact_form_error'
+                });
+            }
+        })
+        .finally(function() {
+            // Restaurar botão
+            button.innerHTML = originalText;
+            button.disabled = false;
+        });
+});*/
