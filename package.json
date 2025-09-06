@@ -1,0 +1,11 @@
+{
+  "name": "psrembalagens-website",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "node generate-config.js",
+    "start": "npm run build"
+  },
+  "devDependencies": {
+    "fs": "^0.0.1-security"
+  }
+}
