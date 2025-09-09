@@ -8,13 +8,145 @@
     <title>Embalagens Brasília DF | PSR EMBALAGENS | Delivery, Marmitas e Descartáveis</title>
     
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-X2XTHETLWD"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-X2XTHETLWD');
-    </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-X2XTHETLWD"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-X2XTHETLWD');
+
+    // EVENTOS PERSONALIZADOS PARA ACOMPANHAR COMPORTAMENTO
+
+    // 1. Acompanhar profundidade de scroll
+    let scrollDepths = [25, 50, 75, 90];
+    let firedDepths = [];
+
+    window.addEventListener('scroll', function() {
+        let scrollPercent = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
+        
+        scrollDepths.forEach(function(depth) {
+            if (scrollPercent >= depth && !firedDepths.includes(depth)) {
+                gtag('event', 'scroll_depth', {
+                    'event_category': 'engagement',
+                    'event_label': depth + '%',
+                    'value': depth
+                });
+                firedDepths.push(depth);
+            }
+        });
+    });
+
+    // 2. Tempo na página
+    let startTime = Date.now();
+    let timeTracked = false;
+
+    function trackTimeOnPage() {
+        if (!timeTracked) {
+            let timeSpent = Math.round((Date.now() - startTime) / 1000);
+            gtag('event', 'time_on_page', {
+                'event_category': 'engagement',
+                'event_label': 'seconds_spent',
+                'value': timeSpent
+            });
+            timeTracked = true;
+        }
+    }
+
+    // Rastrear quando o usuário sair da página
+    window.addEventListener('beforeunload', trackTimeOnPage);
+    
+    // Rastrear após 30 segundos na página
+    setTimeout(function() {
+        gtag('event', 'engaged_user', {
+            'event_category': 'engagement',
+            'event_label': '30_seconds_plus'
+        });
+    }, 30000);
+
+    // 3. Aguardar DOM carregar
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        // Rastrear cliques em elementos importantes
+        document.addEventListener('click', function(e) {
+            // Telefone
+            if (e.target.href && e.target.href.includes('tel:')) {
+                gtag('event', 'phone_click', {
+                    'event_category': 'conversion',
+                    'event_label': 'phone_number'
+                });
+            }
+            
+            // Email
+            if (e.target.href && e.target.href.includes('mailto:')) {
+                gtag('event', 'email_click', {
+                    'event_category': 'conversion',
+                    'event_label': 'email'
+                });
+            }
+
+            // Catálogos (Drive links)
+            if (e.target.href && e.target.href.includes('drive.google.com')) {
+                gtag('event', 'catalog_view', {
+                    'event_category': 'product_interest',
+                    'event_label': e.target.closest('.produto-card')?.querySelector('h3')?.textContent || 'unknown'
+                });
+            }
+        });
+
+        // 4. Rastrear WhatsApp com mais detalhes
+        const whatsappLinks = document.querySelectorAll('a[href*="wa.me"], a[href*="whatsapp"]');
+        
+        whatsappLinks.forEach(function(link) {
+            link.addEventListener('click', function() {
+                let source = 'unknown';
+                if (this.classList.contains('whatsapp-float')) {
+                    source = 'floating_button';
+                } else if (this.closest('#inicio')) {
+                    source = 'hero_section';
+                } else if (this.closest('#faq')) {
+                    source = 'faq_section';
+                } else if (this.closest('footer')) {
+                    source = 'footer';
+                } else if (this.closest('#contato')) {
+                    source = 'contact_section';
+                }
+                
+                gtag('event', 'whatsapp_click', {
+                    'event_category': 'lead_generation',
+                    'event_label': source,
+                    'value': 1
+                });
+            });
+        });
+
+        // 5. Rastrear visualização de seções importantes
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    gtag('event', 'section_view', {
+                        'event_category': 'engagement',
+                        'event_label': entry.target.id || 'unknown_section'
+                    });
+                }
+            });
+        }, { threshold: 0.5 });
+
+        // Observar seções importantes
+        const sections = document.querySelectorAll('#produtos, #sobre, #contato, #faq, #diferenciais');
+        sections.forEach(section => observer.observe(section));
+
+        // 6. Rastrear formulário de contato
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function() {
+                gtag('event', 'form_submit', {
+                    'event_category': 'lead_generation',
+                    'event_label': 'contact_form'
+                });
+            });
+        }
+    });
+</script>
     
     <!-- Google tag (gtag.js) - Google Ads -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17515817161"></script>
@@ -24,6 +156,33 @@
         gtag('js', new Date());
         gtag('config', 'AW-17515817161');
     </script>
+
+    <!-- Meta Pixel Code -->
+    <script>
+        !function(f,b,e,v,n,t,s) {
+            if(f.fbq) return;
+            n = f.fbq = function() {
+                n.callMethod ? n.callMethod.apply(n,arguments) : n.queue.push(arguments)
+            };
+            if(!f._fbq) f._fbq = n;
+            n.push = n;
+            n.loaded = !0;
+            n.version = '2.0';
+            n.queue = [];
+            t = b.createElement(e);
+            t.async = !0;
+            t.src = v;
+            s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t,s)
+        }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+        
+        fbq('init', '789228423596044');
+        fbq('track', 'PageView');
+    </script>
+    <noscript>
+        <img height="1" width="1" style="display:none"
+             src="https://www.facebook.com/tr?id=789228423596044&ev=PageView&noscript=1">
+    </noscript>
     
     <!-- Open Graph -->
     <meta property="og:title" content="PSR EMBALAGENS - Embalagens Brasília DF | Entrega Grátis">
@@ -345,6 +504,15 @@
     }
     </script>
 
+    <!-- Microsoft Clarity -->
+    <script type="text/javascript">
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "t7new17n3j");
+    </script>
+
     <!-- Meta tags adicionais para SEO -->
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
     <meta name="googlebot" content="index, follow">
@@ -397,6 +565,11 @@
             <a href="https://www.instagram.com/psrembalagens/" title="Instagram" target="_blank"></a>
             <a href="https://wa.me/5561993177107" title="WhatsApp" target="_blank"></a>
         </div>
+        <button class="mobile-menu" id="mobile-menu" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
     </nav>
 </header>
 
@@ -679,9 +852,9 @@
 
                 <!-- Conteúdo da aba "Our Story" -->
                 <div id="content-story" class="tab-content">
-                    <h3 class="text-4xl font-bold text-gray-900 mb-6">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-6">
                         Atendendo Empresas Desde 2010
-                    </h3>
+                    </h2>
                     <p class="text-lg text-gray-600 mb-6 leading-relaxed">
                         A PSR Embalagens começou como uma pequena distribuidora de embalagens em Brasília com um objetivo simples: fornecer às empresas produtos de embalagem de qualidade a preços competitivos. Ao longo dos anos, crescemos para nos tornar um dos fornecedores de embalagens mais confiáveis da região.
                     </p>
@@ -698,21 +871,21 @@
 
                 <!-- Conteúdo da aba "Our Mission" -->
                 <div id="content-mission" class="tab-content hidden">
-                    <h3 class="text-4xl font-bold text-gray-900 mb-4">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-4">
                         Nossa <span class="text-secondary">Missão</span>
-                    </h3>
+                    </h2>
                     <p class="text-lg text-gray-600 mb-6 leading-relaxed">
                         Ser o parceiro estratégico de pequenas e médias empresas, fornecendo soluções completas e inovadoras em embalagens de alta qualidade, impulsionadas por um atendimento excepcional que garante o sucesso e a satisfação de nossos clientes.
                     </p>
-                    <h3 class="text-4xl font-bold text-gray-900 mb-4">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-4">
                         Nossa <span class="text-secondary">Visão</span>
-                    </h3>
+                    </h2>
                     <p class="text-lg text-gray-600 mb-6 leading-relaxed">
                         Ser a empresa líder e mais reconhecida em soluções de embalagens no Distrito Federal, expandindo nossa atuação para nos tornarmos uma referência nacional em qualidade, variedade e excelência no relacionamento com o cliente.
                     </p>
-                    <h3 class="text-4xl font-bold text-gray-900 mb-4">
+                    <h2 class="text-4xl font-bold text-gray-900 mb-4">
                         Nossos <span class="text-secondary">Valores</span>
-                    </h3>
+                    </h2>
                     <p class="text-lg text-gray-600 leading-relaxed">
                         <span class="text-primary font-semibold">COMPROMETIMENTO:</span> Dedicamo-nos integralmente aos nossos clientes e à busca por soluções que superem suas expectativas.<br>
                         <span class="text-primary font-semibold">INTEGRIDADE E TRANSPARÊNCIA:</span> Agimos com honestidade, ética e clareza em todas as nossas relações e operações.<br>
@@ -737,14 +910,14 @@
                     </button>
                     
                     <!-- Imagens do carrossel -->
-                    <div class="carousel-item active">
+                    <!--<div class="carousel-item active">
                         <img src="images/entrada_loja.webp" 
                             alt="PSR Embalagens - Entrada da Loja" loading="lazy" class="rounded-lg shadow-lg object-cover w-full" style="max-height: 627px;">
                     </div>
                     <div class="carousel-item">
                         <img src="images/caminho_loja.webp" 
                             alt="PSR Embalagens - Rua da Loja" loading="lazy" class="rounded-lg shadow-lg object-cover w-full" style="max-height: 627px;">
-                    </div>
+                    </div>-->
                     <div class="carousel-item">
                         <img src="images/trabalhando_no_estoque.JPG" 
                             alt="Funcionário da PSR Embalagens organizando estoque de produtos" loading="lazy" class="rounded-lg shadow-lg object-cover w-full" style="max-height: 627px;">
@@ -763,8 +936,8 @@
                         <button class="carousel-indicator active" aria-label="Imagem 1"></button>
                         <button class="carousel-indicator" aria-label="Imagem 2"></button>
                         <button class="carousel-indicator" aria-label="Imagem 3"></button>
-                        <button class="carousel-indicator" aria-label="Imagem 4"></button>
-                        <button class="carousel-indicator" aria-label="Imagem 5"></button>
+                        <!--<button class="carousel-indicator" aria-label="Imagem 4"></button>
+                        <button class="carousel-indicator" aria-label="Imagem 5"></button>-->
                     </div>
                 </div>
             </div>
@@ -813,7 +986,8 @@
                     <div>
                         <h3 class="text-xl font-semibold text-gray-900 mb-2">Horário de Funcionamento</h3>
                         <p class="text-gray-600">
-                            Segunda a Sexta: 5h às 17h<br>
+                            Segunda e Quinta: 5h às 17h<br>
+                            Terça, Quarta e Quinta: 6h às 17h<br>
                             Sábado: 5h às 12h<br>
                             Domingo: Fechado
                         </p>
@@ -841,15 +1015,15 @@
     <div class="max-w-4xl mx-auto px-6">
         <div class="text-center mb-16">
             <h2 class="text-4xl font-bold text-gray-900 mb-4">Entre em Contato</h2>
-            <h3 class="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
                 Tem alguma dúvida ou precisa de um orçamento? Estamos aqui para ajudar!
-            </h3>
+            </p>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
             <!-- Formulário de Cadastro de Contato -->
             <div class="bg-white p-8 rounded-lg shadow-sm">
                 <div class="mb-6">
-                    <h4 class="text-2xl font-bold text-gray-900 mb-2">Entre em Contato</h4>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Entre em Contato</h3>
                     <p class="text-gray-600">Preencha o formulário abaixo e entraremos em contato com você.</p>
                 </div>
                 
@@ -1246,7 +1420,8 @@
                 <h3>Atendimento</h3>
                 <p>📞 (61) 99317-7107</p>
                 <p>📧 comercial@santaritaembalagens.com.br</p>
-                <p>🕒 Seg-Sex: 5h às 17h</p>
+                <p>🕒 Seg/Qui: 5h às 17h</p>
+                <p>🕒 Ter/Quar/Sex: 6h às 17h</p>
                 <p>🕒 Sáb: 5h às 12h</p>
             </div>
         </div>

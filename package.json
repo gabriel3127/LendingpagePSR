@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "scripts": {
     "build": "node generate-config.js",
-    "start": "npm run build"
+    "start": "npm run build",
+    "setup": "cp .env.example .env && echo 'Configure o arquivo .env com suas credenciais'",
+    "clean": "rm -f config.js"
   },
   "devDependencies": {
     "fs": "^0.0.1-security"
