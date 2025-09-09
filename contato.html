@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="PSR Embalagens Brasília: Marmitas, sacolas delivery, descartáveis biodegradáveis. Entrega grátis no DF. Mais de 15 anos no mercado. PEÇA JÁ!">
+    <meta name="description" content="Entre em contato com PSR Embalagens Brasília. Orçamentos para marmitas, sacolas delivery e descartáveis. Entrega grátis no DF. Ligue (61) 99317-7107">
     <meta name="author" content="PSR EMBALAGENS - Embalagens Brasília">
-    <title>Embalagens Brasília DF | PSR EMBALAGENS | Delivery, Marmitas e Descartáveis</title>
+    <title>Contato - PSR Embalagens Brasília | Orçamento Embalagens DF</title>
     
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-X2XTHETLWD"></script>
@@ -14,6 +14,51 @@
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
         gtag('config', 'G-X2XTHETLWD');
+
+        // EVENTOS PERSONALIZADOS PARA PÁGINA DE CONTATO
+        document.addEventListener('DOMContentLoaded', function() {
+            // Rastrear cliques em elementos importantes
+            document.addEventListener('click', function(e) {
+                // Telefone
+                if (e.target.href && e.target.href.includes('tel:')) {
+                    gtag('event', 'phone_click', {
+                        'event_category': 'conversion',
+                        'event_label': 'contact_page_phone'
+                    });
+                }
+                
+                // Email
+                if (e.target.href && e.target.href.includes('mailto:')) {
+                    gtag('event', 'email_click', {
+                        'event_category': 'conversion',
+                        'event_label': 'contact_page_email'
+                    });
+                }
+            });
+
+            // Rastrear WhatsApp na página de contato
+            const whatsappLinks = document.querySelectorAll('a[href*="wa.me"], a[href*="whatsapp"]');
+            whatsappLinks.forEach(function(link) {
+                link.addEventListener('click', function() {
+                    gtag('event', 'whatsapp_click', {
+                        'event_category': 'lead_generation',
+                        'event_label': 'contact_page',
+                        'value': 1
+                    });
+                });
+            });
+
+            // Rastrear formulário de contato
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function() {
+                    gtag('event', 'form_submit', {
+                        'event_category': 'lead_generation',
+                        'event_label': 'contact_form_page'
+                    });
+                });
+            }
+        });
     </script>
     
     <!-- Google tag (gtag.js) - Google Ads -->
@@ -24,27 +69,54 @@
         gtag('js', new Date());
         gtag('config', 'AW-17515817161');
     </script>
+
+    <!-- Meta Pixel Code -->
+    <script>
+        !function(f,b,e,v,n,t,s) {
+            if(f.fbq) return;
+            n = f.fbq = function() {
+                n.callMethod ? n.callMethod.apply(n,arguments) : n.queue.push(arguments)
+            };
+            if(!f._fbq) f._fbq = n;
+            n.push = n;
+            n.loaded = !0;
+            n.version = '2.0';
+            n.queue = [];
+            t = b.createElement(e);
+            t.async = !0;
+            t.src = v;
+            s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t,s)
+        }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+        
+        fbq('init', '789228423596044');
+        fbq('track', 'PageView');
+    </script>
+    <noscript>
+        <img height="1" width="1" style="display:none"
+             src="https://www.facebook.com/tr?id=789228423596044&ev=PageView&noscript=1">
+    </noscript>
     
     <!-- Open Graph -->
-    <meta property="og:title" content="Contato - PSR EMBALAGENS | Orçamento Embalagens Brasília">
-    <meta property="og:description" content="Entre em contato conosco para orçamentos de embalagens delivery, marmitas e biodegradáveis em Brasília DF.">
+    <meta property="og:title" content="Contato - PSR Embalagens Brasília | Orçamento Embalagens DF">
+    <meta property="og:description" content="Entre em contato conosco para orçamentos de embalagens delivery, marmitas e biodegradáveis em Brasília DF. Entrega grátis!">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.santaritaembalagens.com.br/contato.html">
-    <meta property="og:image" content="https://www.santaritaembalagens.com.br/images/PSR-LOGO.svg">
+    <meta property="og:url" content="https://www.psrembalagens.com.br/contato.html">
+    <meta property="og:image" content="https://www.psrembalagens.com.br/images/PSR-LOGO.svg">
     <meta property="og:site_name" content="PSR Embalagens">
     <meta property="og:locale" content="pt_BR">
     <meta name="tailwind-cdn" content="production-override">
     
     <!-- Twitter Cards -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Contato - PSR EMBALAGENS | Orçamento Embalagens Brasília">
+    <meta name="twitter:title" content="Contato - PSR Embalagens Brasília | Orçamento Embalagens DF">
     <meta name="twitter:description" content="Entre em contato conosco para orçamentos de embalagens delivery, marmitas e biodegradáveis em Brasília DF.">
-    <meta name="twitter:image" content="https://www.santaritaembalagens.com.br/images/PSR-LOGO.svg">
+    <meta name="twitter:image" content="https://www.psrembalagens.com.br/images/PSR-LOGO.svg">
     
     <!-- SEO Tags -->
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
     <meta name="googlebot" content="index, follow">
-    <link rel="canonical" href="https://www.santaritaembalagens.com.br/contato.html">
+    <link rel="canonical" href="https://www.psrembalagens.com.br/contato.html">
     
     <!-- Informações de localização -->
     <meta name="geo.region" content="BR-DF">
@@ -102,7 +174,7 @@
     "description": "Distribuidora de embalagens em Brasília DF. Marmitas, sacolas delivery, descartáveis e biodegradáveis. Pronta entrega com qualidade e preço competitivo. Entrega grátis no DF e entorno.",
     "url": "https://www.psrembalagens.com.br",
     "telephone": "+5561993177107",
-    "email": "comercial@santaritaembalagens.com.br",
+    "email": "comercial@psrembalagens.com.br",
     "address": {
         "@type": "PostalAddress",
         "streetAddress": "SIA Trecho 10,05 PAV B-10B, BOX 07",
@@ -113,163 +185,14 @@
     },
     "geo": {
         "@type": "GeoCoordinates",
-        "latitude": -15.788637900000001,
-        "longitude": -47.9464213
+        "latitude": "-15.788637900000001",
+        "longitude": "-47.9464213"
     },
-    "openingHoursSpecification": [
-        {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-        "opens": "05:00",
-        "closes": "17:00"
-        },
-        {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": "Saturday",
-        "opens": "05:00",
-        "closes": "12:00"
-        }
-    ],
-    "serviceArea": {
-        "@type": "Place",
-        "name": "Distrito Federal e Entorno",
-        "geo": {
-        "@type": "GeoCircle",
-        "geoMidpoint": {
-            "@type": "GeoCoordinates",
-            "latitude": -15.788637900000001,
-            "longitude": -47.9464213
-        },
-        "geoRadius": "50000"
-        }
-    },
-    "hasOfferCatalog": {
-        "@type": "OfferCatalog",
-        "name": "Catálogo de Embalagens PSR",
-        "itemListElement": [
-        {
-            "@type": "Offer",
-            "itemOffered": {
-            "@type": "Product",
-            "name": "Embalagens Descartáveis para Delivery",
-            "description": "Marmitas, copos, sacolas e embalagens especializadas para food service e delivery",
-            "category": "Embalagens para Alimentação"
-            }
-        },
-        {
-            "@type": "Offer",
-            "itemOffered": {
-            "@type": "Product",
-            "name": "Embalagens para Mercados e Açougues",
-            "description": "Sacolas, embalagens e soluções para mercados, açougues e comércios em geral",
-            "category": "Embalagens para Varejo"
-            }
-        },
-        {
-            "@type": "Offer",
-            "itemOffered": {
-            "@type": "Product",
-            "name": "Embalagens para Hamburguerias e Lanchonetes",
-            "description": "Caixas para hambúrguer, batatas fritas, lanches e fast food",
-            "category": "Embalagens para Fast Food"
-            }
-        },
-        {
-            "@type": "Offer",
-            "itemOffered": {
-            "@type": "Product",
-            "name": "Descartáveis para Festas e Eventos",
-            "description": "Copos, pratos, utensílios descartáveis e embalagens temáticas para eventos",
-            "category": "Descartáveis para Festas"
-            }
-        },
-        {
-            "@type": "Offer",
-            "itemOffered": {
-            "@type": "Product",
-            "name": "Produtos de Higiene e Limpeza",
-            "description": "Produtos de higiene e limpeza profissional para estabelecimentos comerciais",
-            "category": "Higiene e Limpeza"
-            }
-        },
-        {
-            "@type": "Offer",
-            "itemOffered": {
-            "@type": "Product",
-            "name": "Embalagens Biodegradáveis e Sustentáveis",
-            "description": "Produtos ecológicos e sustentáveis que respeitam o meio ambiente",
-            "category": "Embalagens Sustentáveis"
-            }
-        }
-        ]
-    },
-    "areaServed": [
-        {
-        "@type": "City",
-        "name": "Brasília",
-        "containedInPlace": {
-            "@type": "State",
-            "name": "Distrito Federal"
-        }
-        },
-        {
-        "@type": "City",
-        "name": "Águas Claras",
-        "containedInPlace": {
-            "@type": "State",
-            "name": "Distrito Federal"
-        }
-        },
-        {
-        "@type": "City",
-        "name": "Taguatinga",
-        "containedInPlace": {
-            "@type": "State",
-            "name": "Distrito Federal"
-        }
-        },
-        {
-        "@type": "City",
-        "name": "Ceilândia",
-        "containedInPlace": {
-            "@type": "State",
-            "name": "Distrito Federal"
-        }
-        },
-        {
-        "@type": "City",
-        "name": "Guará",
-        "containedInPlace": {
-            "@type": "State",
-            "name": "Distrito Federal"
-        }
-        }
-    ],
-    "sameAs": [
-        "https://www.facebook.com/profile.php?id=61578739646226",
-        "https://www.instagram.com/psrembalagens/"
-    ],
-    "review": [
-        {
-        "@type": "Review",
-        "author": {
-            "@type": "Person",
-            "name": "Alcides Moreira"
-        },
-        "reviewRating": {
-            "@type": "Rating",
-            "ratingValue": "5",
-            "bestRating": "5"
-        },
-        "reviewBody": "Atendimento rápido e entrega no dia marcado!!! Parabéns"
-        }
-    ],
-    "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "5.0",
-        "reviewCount": "4",
-        "bestRating": "5",
-        "worstRating": "5"
+    "openingHours": "Mo-Fr 08:00-18:00, Sa 08:00-12:00",
+    "priceRange": "$$",
+    "areaServed": {
+        "@type": "State",
+        "name": "Distrito Federal"
     }
     }
     </script>
@@ -284,20 +207,17 @@
           "@type": "ListItem",
           "position": 1,
           "name": "Início",
-          "item": "https://www.santaritaembalagens.com.br/"
+          "item": "https://www.psrembalagens.com.br/"
         },
         {
           "@type": "ListItem",
           "position": 2,
           "name": "Contato",
-          "item": "https://www.santaritaembalagens.com.br/contato.html"
+          "item": "https://www.psrembalagens.com.br/contato.html"
         }
       ]
     }
     </script>
-
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-
 </head>
 <body>
     <!-- Header -->

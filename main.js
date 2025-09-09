@@ -430,8 +430,8 @@ class PSREmbalagens {
     // EmailJS
     async loadEmailJS() {
         try {
-            if (typeof emailjs !== 'undefined') {
-                emailjs.init('CBpvvLBOJW0FYVHHh');
+            if (typeof emailjs !== 'undefined' && window.CONFIG) {
+                emailjs.init(window.CONFIG.EMAILJS_PUBLIC_KEY);  // ✅ USA VARIÁVEL DE AMBIENTE
                 this.isEmailJSLoaded = true;
                 console.log('✅ EmailJS carregado');
             }
@@ -449,7 +449,11 @@ class PSREmbalagens {
             reply_to: data.email
         };
         
-        return emailjs.send('service_1irc3hk', 'template_0hhugyn', templateParams);
+        return emailjs.send(
+            window.CONFIG.EMAILJS_SERVICE_ID,    // ✅ USA VARIÁVEL DE AMBIENTE
+            window.CONFIG.EMAILJS_TEMPLATE_ID,   // ✅ USA VARIÁVEL DE AMBIENTE
+            templateParams
+        );
     }
 
     // WhatsApp fallback
