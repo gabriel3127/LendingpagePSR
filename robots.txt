@@ -1,5 +1,5 @@
 # robots.txt para PSR EMBALAGENS
-# https://www.santaritaembalagens.com.br/robots.txt
+# https://www.psrembalagens.com.br/robots.txt
 
 User-agent: *
 Allow: /
@@ -73,9 +73,9 @@ User-agent: MegaIndex
 Disallow: /
 
 # Localização do sitemap
-Sitemap: https://www.santaritaembalagens.com.br/sitemap.xml
+Sitemap: https://www.psrembalagens.com.br/sitemap.xml
 
 # Informações adicionais
 # Site: PSR EMBALAGENS - Embalagens Brasília DF
-# Contato: comercial@santaritaembalagens.com.br
-# Última atualização: 2025-01-21
+# Contato: contato@psrembalagens.com.br
+# Última atualização: 2024-12-19
