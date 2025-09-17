@@ -1,13 +1,17 @@
 {
-  "$schema": "https://openapi.vercel.sh/vercel.json",
-  "outputDirectory": ".",
-  "buildCommand": "npm run build",
-  "installCommand": "npm install",
-  "rewrites": [
+  "redirects": [
     {
-      "source": "/",
-      "destination": "/index.html"
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
     },
+    {
+      "source": "/contato", 
+      "destination": "/contato.html",
+      "permanent": true
+    }
+  ],
+  "rewrites": [
     {
       "source": "/contato",
       "destination": "/contato.html"
