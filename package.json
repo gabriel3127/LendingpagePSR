@@ -2,12 +2,12 @@
   "name": "psrembalagens-website",
   "version": "1.0.0",
   "scripts": {
-    "build": "node generate-config.js",
-    "start": "npm run build",
-    "setup": "cp .env.example .env && echo 'Configure o arquivo .env com suas credenciais'",
-    "clean": "rm -f config.js"
+    "build": "tailwindcss -i ./style.css -o ./style.css --minify",
+    "dev": "tailwindcss -i ./style.css -o ./style.css --watch",
+    "start": "echo 'Site pronto para uso'"
   },
   "devDependencies": {
+    "tailwindcss": "^3.4.0",
     "fs": "^0.0.1-security"
   }
 }

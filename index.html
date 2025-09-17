@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="PSR Embalagens Brasília: Marmitas, sacolas delivery, descartáveis biodegradáveis. Entrega grátis no DF. Mais de 15 anos no mercado. PEÇA JÁ!">
     <meta name="author" content="PSR EMBALAGENS - Embalagens Brasília">
-    <title>Embalagens Brasília DF | PSR EMBALAGENS | Delivery, Marmitas e Descartáveis</title>
+    <title>PSR | Brasília DF | Embalagens e Descartáveis</title>
+
+    <link rel="stylesheet" href="style.css">
     
     <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-X2XTHETLWD"></script>
@@ -159,25 +161,18 @@
 
     <!-- Meta Pixel Code -->
     <script>
-        !function(f,b,e,v,n,t,s) {
-            if(f.fbq) return;
-            n = f.fbq = function() {
-                n.callMethod ? n.callMethod.apply(n,arguments) : n.queue.push(arguments)
+        // Carregar Facebook Pixel de forma assíncrona
+        (function() {
+            var script = document.createElement('script');
+            script.async = true;
+            script.src = 'https://connect.facebook.net/en_US/fbevents.js';
+            document.head.appendChild(script);
+            
+            script.onload = function() {
+                fbq('init', '789228423596044');
+                fbq('track', 'PageView');
             };
-            if(!f._fbq) f._fbq = n;
-            n.push = n;
-            n.loaded = !0;
-            n.version = '2.0';
-            n.queue = [];
-            t = b.createElement(e);
-            t.async = !0;
-            t.src = v;
-            s = b.getElementsByTagName(e)[0];
-            s.parentNode.insertBefore(t,s)
-        }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
-        
-        fbq('init', '789228423596044');
-        fbq('track', 'PageView');
+        })();
     </script>
     <noscript>
         <img height="1" width="1" style="display:none"
@@ -188,47 +183,10 @@
     <meta property="og:title" content="PSR EMBALAGENS - Embalagens Brasília DF | Entrega Grátis">
     <meta property="og:description" content="Qualidade, variedade e preço competitivo para empresas e eventos. Entrega grátis no DF e entorno.">
     <meta property="og:type" content="website">
-    <meta name="tailwind-cdn" content="production-override">
     
     <!-- Favicon -->
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-
-    <link rel="stylesheet" href="style.css">
-
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#214194',
-                        secondary: '#febb0f'
-                    },
-                    maxHeight: {
-                        '124': '31rem'
-                    },
-                    borderRadius: {
-                        'none': '0px',
-                        'sm': '4px',
-                        DEFAULT: '8px',
-                        'md': '12px',
-                        'lg': '16px',
-                        'xl': '20px',
-                        '2xl': '24px',
-                        '3xl': '32px',
-                        'full': '9999px',
-                        'button': '8px'
-                    }
-                }
-            }
-        }
-    </script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
-
+    
     <!-- Schema Local Business -->
     <script type="application/ld+json">
     {
@@ -542,9 +500,71 @@
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 
     <link rel="preload" as="image" href="images/hero.JPG">
+
+    <meta name="emailjs-public-key" content="CBpvvLBOJW0FYVHHh">
+    <meta name="emailjs-service-id" content="service_1irc3hk">
+    <meta name="emailjs-template-id" content="template_0hhugyn">
     
 </head>
 <body>
+    <!-- SVG Sprite - Definições dos ícones -->
+    <svg style="display: none;" aria-hidden="true">
+        <defs>
+            <!-- Ícone de localização -->
+            <symbol id="icon-map-pin" viewBox="0 0 24 24">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+            </symbol>
+            
+            <!-- Ícone de tempo/relógio -->
+            <symbol id="icon-time" viewBox="0 0 24 24">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/>
+            </symbol>
+            
+            <!-- Ícone de telefone -->
+            <symbol id="icon-phone" viewBox="0 0 24 24">
+                <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+            </symbol>
+            
+            <!-- Ícone de email -->
+            <symbol id="icon-email" viewBox="0 0 24 24">
+                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.89 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+            </symbol>
+            
+            <!-- Ícone de WhatsApp -->
+            <symbol id="icon-whatsapp" viewBox="0 0 24 24">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.893 3.488"/>
+            </symbol>
+            
+            <!-- Ícone de estrela preenchida -->
+            <symbol id="icon-star-fill" viewBox="0 0 24 24">
+                <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+            </symbol>
+            
+            <!-- Ícone de envio -->
+            <symbol id="icon-send" viewBox="0 0 24 24">
+                <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+            </symbol>
+            
+            <!-- Ícone de adicionar/mais -->
+            <symbol id="icon-add" viewBox="0 0 24 24">
+                <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+            </symbol>
+            
+            <!-- Ícone de subtrair/menos -->
+            <symbol id="icon-subtract" viewBox="0 0 24 24">
+                <path d="M19 13H5v-2h14v2z"/>
+            </symbol>
+            
+            <!-- Ícone do Google -->
+            <symbol id="icon-google" viewBox="0 0 24 24">
+                <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+                <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+            </symbol>
+        </defs>
+    </svg>
+<!-- Header -->
 <!-- Header -->
 <header>
     <nav class="container">
@@ -685,55 +705,66 @@
             <span class="absolute bottom-[-20px] left-1/2 transform -translate-x-1/2 w-20 h-1 bg-yellow-400 rounded-full"></span>
         </p>
         
-        <!-- Primeira linha: 4 itens no desktop -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 mb-6 lg:mb-8">
-            
-            <div class="produto-card bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 hover:-translate-y-1">
-                <div class="produto-image h-64 bg-gradient-to-br from-blue-800 to-blue-900 flex items-center justify-center text-6xl text-white"><img src="images/descartaveis.jpg" alt="Embalagens descartáveis para delivery e take away" loading="lazy"></div>
-                <div class="produto-content p-6">
-                    <h3 class="text-xl font-bold text-blue-800 mb-4">Descartáveis</h3>
-                    <p class="text-gray-600 mb-6 leading-relaxed">Marmitas, Copos e embalagens especializadas para food service. Resistentes e práticas para manter a qualidade dos seus pratos.</p>
+        <!-- Primeira linha: 4 itens -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 mb-8">
+            <!-- Descartáveis -->
+            <div class="produto-card bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-500 hover:shadow-xl hover:-translate-y-2 opacity-0 animate-fade-in" style="animation-delay: 0.1s">
+                <div class="h-64 overflow-hidden bg-gray-100">
+                    <img src="images/descartaveis.jpg" alt="Descartáveis" class="w-full h-full object-cover object-center transition-transform duration-300 hover:scale-105">
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Descartáveis</h3>
+                    <p class="text-gray-600 mb-4 leading-relaxed">Marmitas, Copos e embalagens descartáveis para seu local comercial. Resistentes e práticas para facilitar o dia a dia.</p>
                     <a href="https://drive.google.com/file/d/1hPTPtsFg18vhvS9ty7YYBSwJqfM3REE4/view?usp=drive_link" target="_blank" 
-                        class="produto-cta inline-block bg-blue-800 hover:bg-blue-900 text-white font-semibold py-3 px-6 rounded-full transition-all duration-300 hover:-translate-y-0.5"
+                        class="inline-block bg-primary hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-full transition-all duration-300 hover:-translate-y-0.5 shadow-lg hover:shadow-xl"
                         onclick="gtag('event', 'click', {'event_category': 'product_catalog', 'event_label': 'descartaveis'});">
                         Ver Catálogo
                     </a>
                 </div>
             </div>
 
-            <div class="produto-card bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 hover:-translate-y-1">
-                <div class="produto-image h-64 bg-gradient-to-br from-blue-800 to-blue-900 flex items-center justify-center text-6xl text-white"><img src="images/mercado.jpg" alt="Embalagens para mercados e estabelecimentos comerciais" loading="lazy"></div>
-                <div class="produto-content p-6">
-                    <h3 class="text-xl font-bold text-blue-800 mb-4">Mercados e Açougues</h3>
-                    <p class="text-gray-600 mb-6 leading-relaxed">Nossas embalagens são pensadas para otimizar o seu dia a dia, desde a gôndola até a casa do cliente.</p>
+            <!-- Mercados e Açougues -->
+            <div class="produto-card bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-500 hover:shadow-xl hover:-translate-y-2 opacity-0 animate-fade-in" style="animation-delay: 0.2s">
+                <div class="h-64 overflow-hidden bg-gray-100">
+                    <img src="images/mercado.jpg" alt="Mercados e Açougues" class="w-full h-full object-cover object-center transition-transform duration-300 hover:scale-105">
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Mercados e Açougues</h3>
+                    <p class="text-gray-600 mb-4 leading-relaxed">Nossas embalagens são essenciais para manter o seu dia a dia, desde a gôndola até a mesa do consumidor.</p>
                     <a href="https://drive.google.com/file/d/1n3sATvimsn6Iv0-TaqwO5GPOHJSd0bPX/view?usp=drive_link" target="_blank" 
-                        class="produto-cta inline-block bg-blue-800 hover:bg-blue-900 text-white font-semibold py-3 px-6 rounded-full transition-all duration-300 hover:-translate-y-0.5"
+                        class="inline-block bg-primary hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-full transition-all duration-300 hover:-translate-y-0.5 shadow-lg hover:shadow-xl"
                         onclick="gtag('event', 'click', {'event_category': 'product_catalog', 'event_label': 'mercado'});">
                         Ver Catálogo
                     </a>
                 </div>
             </div>
 
-            <div class="produto-card bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 hover:-translate-y-1">
-                <div class="produto-image h-64 bg-gradient-to-br from-blue-800 to-blue-900 flex items-center justify-center text-6xl text-white"><img src="images/lanchonete.jpg" alt="Embalagens para Hamburguerias e Lanchonetes" loading="lazy"></div>
-                <div class="produto-content p-6">
-                    <h3 class="text-xl font-bold text-blue-800 mb-4">Hamburguerias e Lanchonetes</h3>
-                    <p class="text-gray-600 mb-6 leading-relaxed">Garanta que seus hambúrgueres e lanches cheguem quentinhos e perfeitos, mantendo a qualidade do seu trabalho.</p>
+            <!-- Hamburguerias e Lanchonetes -->
+            <div class="produto-card bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-500 hover:shadow-xl hover:-translate-y-2 opacity-0 animate-fade-in" style="animation-delay: 0.3s">
+                <div class="h-64 overflow-hidden bg-gray-100">
+                    <img src="images/lanchonete.jpg" alt="Hamburguerias e Lanchonetes" class="w-full h-full object-cover object-center transition-transform duration-300 hover:scale-105">
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Hamburguerias e Lanchonetes</h3>
+                    <p class="text-gray-600 mb-4 leading-relaxed">Garanta que seus hambúrgueres e lanches cheguem quentinhos e com qualidade.</p>
                     <a href="https://drive.google.com/file/d/1YM3JkbqY2E8uw3Y_Ybof27oPqjrBaYp4/view?usp=drive_link" target="_blank" 
-                        class="produto-cta inline-block bg-blue-800 hover:bg-blue-900 text-white font-semibold py-3 px-6 rounded-full transition-all duration-300 hover:-translate-y-0.5"
+                        class="inline-block bg-primary hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-full transition-all duration-300 hover:-translate-y-0.5 shadow-lg hover:shadow-xl"
                         onclick="gtag('event', 'click', {'event_category': 'product_catalog', 'event_label': 'burguerlanche'});">
                         Ver Catálogo
                     </a>
                 </div>
             </div>
 
-            <div class="produto-card bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 hover:-translate-y-1">
-                <div class="produto-image h-64 bg-gradient-to-br from-blue-800 to-blue-900 flex items-center justify-center text-6xl text-white"><img src="images/festa.jpg" alt="Descartáveis para festas e eventos" loading="lazy"></div>
-                <div class="produto-content p-6">
-                    <h3 class="text-xl font-bold text-blue-800 mb-4">Embalagens para Festas</h3>
-                    <p class="text-gray-600 mb-6 leading-relaxed">Utensílios descartáveis, copos, pratos e embalagens temáticas para eventos, festas e celebrações especiais.</p>
+            <!-- Embalagens para Festas -->
+            <div class="produto-card bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-500 hover:shadow-xl hover:-translate-y-2 opacity-0 animate-fade-in" style="animation-delay: 0.4s">
+                <div class="h-64 overflow-hidden bg-gray-100">
+                    <img src="images/festa.jpg" alt="Embalagens para Festas" class="w-full h-full object-cover object-center transition-transform duration-300 hover:scale-105">
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Embalagens para Festas</h3>
+                    <p class="text-gray-600 mb-4 leading-relaxed">Utensílios descartáveis, copos e embalagens temáticas para eventos, festas e comemorações.</p>
                     <a href="https://drive.google.com/file/d/1z20Twymcy-N-akN6l8fLwfGSLMH7n5ns/view?usp=drive_link" target="_blank" 
-                        class="produto-cta inline-block bg-blue-800 hover:bg-blue-900 text-white font-semibold py-3 px-6 rounded-full transition-all duration-300 hover:-translate-y-0.5"
+                        class="inline-block bg-primary hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-full transition-all duration-300 hover:-translate-y-0.5 shadow-lg hover:shadow-xl"
                         onclick="gtag('event', 'click', {'event_category': 'product_catalog', 'event_label': 'festa'});">
                         Ver Catálogo
                     </a>
@@ -741,42 +772,50 @@
             </div>
         </div>
 
-        <!-- Segunda linha: 3 itens centralizados no desktop -->
+        <!-- Segunda linha: 3 itens centralizados -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 lg:max-w-4xl lg:mx-auto">
-
-            <div class="produto-card bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 hover:-translate-y-1">
-                <div class="produto-image h-64 bg-gradient-to-br from-blue-800 to-blue-900 flex items-center justify-center text-6xl text-white"><img src="images/limpeza.webp" alt="Produtos de limpeza e higiene comerciais e residenciais" loading="lazy"></div>
-                <div class="produto-content p-6">
-                    <h3 class="text-xl font-bold text-blue-800 mb-4">Higiene e Limpeza</h3>
-                    <p class="text-gray-600 mb-6 leading-relaxed">Produtos de higiene e limpeza profissional para manter seu estabelecimento ou sua casa sempre limpos.</p>
+            <!-- Higiene e Limpeza -->
+            <div class="produto-card bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-500 hover:shadow-xl hover:-translate-y-2 opacity-0 animate-fade-in" style="animation-delay: 0.5s">
+                <div class="h-64 overflow-hidden bg-gray-100">
+                    <img src="images/limpeza.webp" alt="Produtos de limpeza e higiene comerciais e residenciais" loading="lazy" class="w-full h-full object-cover object-center transition-transform duration-300 hover:scale-105">
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Higiene e Limpeza</h3>
+                    <p class="text-gray-600 mb-4 leading-relaxed">Produtos de higiene e limpeza profissional para manter seu estabelecimento ou sua casa sempre limpos.</p>
                     <a href="https://drive.google.com/file/d/1tqjIgxpg98SagOmdRcac_MgAZVm3qo0l/view?usp=drive_link" target="_blank" 
-                        class="produto-cta inline-block bg-blue-800 hover:bg-blue-900 text-white font-semibold py-3 px-6 rounded-full transition-all duration-300 hover:-translate-y-0.5"
+                        class="inline-block bg-primary hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-full transition-all duration-300 hover:-translate-y-0.5 shadow-lg hover:shadow-xl"
                         onclick="gtag('event', 'click', {'event_category': 'product_catalog', 'event_label': 'higiene'});">
                         Ver Catálogo
                     </a>
                 </div>
             </div>
 
-            <div class="produto-card bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 hover:-translate-y-1">
-                <div class="produto-image h-64 bg-gradient-to-br from-blue-800 to-blue-900 flex items-center justify-center text-6xl text-white"><img src="images/diversos.webp" alt="Diversos produtos e embalagens PSR" loading="lazy"></div>
-                <div class="produto-content p-6">
-                    <h3 class="text-xl font-bold text-blue-800 mb-4">Diversos</h3>
-                    <p class="text-gray-600 mb-6 leading-relaxed">Variados produtos e soluções para atender todas as necessidades do seu negócio.</p>
+            <!-- Diversos -->
+            <div class="produto-card bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-500 hover:shadow-xl hover:-translate-y-2 opacity-0 animate-fade-in" style="animation-delay: 0.6s">
+                <div class="h-64 overflow-hidden bg-gray-100">
+                    <img src="images/diversos.webp" alt="Diversos produtos e embalagens PSR" loading="lazy" class="w-full h-full object-cover object-center transition-transform duration-300 hover:scale-105">
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Diversos</h3>
+                    <p class="text-gray-600 mb-4 leading-relaxed">Variados produtos e soluções para atender todas as necessidades do seu negócio.</p>
                     <a href="https://drive.google.com/file/d/1ZjliXD9An3IeLgaNyujiPJqpeufiayF4/view?usp=drive_link" target="_blank" 
-                        class="produto-cta inline-block bg-blue-800 hover:bg-blue-900 text-white font-semibold py-3 px-6 rounded-full transition-all duration-300 hover:-translate-y-0.5"
+                        class="inline-block bg-primary hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-full transition-all duration-300 hover:-translate-y-0.5 shadow-lg hover:shadow-xl"
                         onclick="gtag('event', 'click', {'event_category': 'product_catalog', 'event_label': 'diversos'});">
                         Ver Catálogo
                     </a>
                 </div>
             </div>
 
-            <div class="produto-card bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 hover:-translate-y-1">
-                <div class="produto-image h-64 bg-gradient-to-br from-blue-800 to-blue-900 flex items-center justify-center text-6xl text-white"><img src="images/bio.jpg" alt="Embalagens biodegradáveis e sustentáveis" loading="lazy"></div>
-                <div class="produto-content p-6">
-                    <h3 class="text-xl font-bold text-blue-800 mb-4">Biodegradáveis</h3>
-                    <p class="text-gray-600 mb-6 leading-relaxed">Produtos ecológicos e sustentáveis que respeitam o meio ambiente sem abrir mão da qualidade.</p>
+            <!-- Biodegradáveis -->
+            <div class="produto-card bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-500 hover:shadow-xl hover:-translate-y-2 opacity-0 animate-fade-in" style="animation-delay: 0.7s">
+                <div class="h-64 overflow-hidden bg-gray-100">
+                    <img src="images/bio.jpg" alt="Embalagens biodegradáveis e sustentáveis" loading="lazy" class="w-full h-full object-cover object-center transition-transform duration-300 hover:scale-105">
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-3">Biodegradáveis</h3>
+                    <p class="text-gray-600 mb-4 leading-relaxed">Produtos ecológicos e sustentáveis que respeitam o meio ambiente sem abrir mão da qualidade.</p>
                     <a href="https://drive.google.com/file/d/1PWiCsAINVKoJ5lBrkpUg86oQ9nOdM-R9/view?usp=drive_link" target="_blank" 
-                        class="produto-cta inline-block bg-blue-800 hover:bg-blue-900 text-white font-semibold py-3 px-6 rounded-full transition-all duration-300 hover:-translate-y-0.5"
+                        class="inline-block bg-primary hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-full transition-all duration-300 hover:-translate-y-0.5 shadow-lg hover:shadow-xl"
                         onclick="gtag('event', 'click', {'event_category': 'product_catalog', 'event_label': 'bio'});">
                         Ver Catálogo
                     </a>
@@ -796,33 +835,44 @@
                 <div class="flex space-x-2 mb-8">
                     <button onclick="showTab('choose')" 
                             id="tab-choose" 
-                            class="tab-button flex items-center space-x-2 px-6 py-3 rounded-lg font-semibold transition-all duration-300">
-                        <i class="ri-award-line"></i>
+                            class="tab-button active flex items-center space-x-2 px-6 py-3 rounded-lg font-semibold transition-all duration-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+                            <path d="M12 15.2C9.2 15.2 7 13 7 10.2C7 7.4 9.2 5.2 12 5.2C14.8 5.2 17 7.4 17 10.2C17 13 14.8 15.2 12 15.2ZM12 7.2C10.3 7.2 9 8.5 9 10.2C9 11.9 10.3 13.2 12 13.2C13.7 13.2 15 11.9 15 10.2C15 8.5 13.7 7.2 12 7.2Z"/>
+                            <path d="M12 22.7C11.7 22.7 11.5 22.6 11.2 22.5C10.9 22.3 5.70001 19.1 3.10001 14.4C2.40001 13.1 2 11.7 2 10.2C2 5.7 6.5 2 12 2C17.5 2 22 5.7 22 10.2C22 11.7 21.6 13.1 20.9 14.4C18.3 19.1 13.1 22.3 12.8 22.5C12.5 22.6 12.3 22.7 12 22.7ZM12 4C7.6 4 4 6.8 4 10.2C4 11.3 4.3 12.4 4.8 13.4C6.9 17.1 10.8 19.8 12 20.6C13.2 19.8 17.1 17.1 19.2 13.4C19.7 12.4 20 11.3 20 10.2C20 6.8 16.4 4 12 4Z"/>
+                        </svg>
                         <span>Porque nos escolher?</span>
                     </button>
                     <button onclick="showTab('story')" 
                             id="tab-story" 
-                            class="tab-button active flex items-center space-x-2 px-6 py-3 rounded-lg font-semibold transition-all duration-300">
-                        <i class="ri-book-line"></i>
+                            class="tab-button flex items-center space-x-2 px-6 py-3 rounded-lg font-semibold transition-all duration-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+                            <path d="M21 5c-1.11-.35-2.33-.5-3.5-.5-1.95 0-4.05.4-5.5 1.5-1.45-1.1-3.55-1.5-5.5-1.5-1.95 0-4.05.4-5.5 1.5v14.65c0 .25.25.5.5.5.1 0 .15-.05.25-.05C3.1 20.45 5.05 20 6.5 20c1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.3 4.75 1.05.1.05.15.05.25.05.25 0 .5-.25.5-.5V6c-.6-.45-1.25-.75-2-1zm0 13.5c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V8c1.35-.85 3.8-1.5 5.5-1.5 1.2 0 2.4.15 3.5.5v11.5z"/>
+                        </svg>
                         <span>Nossa Historia</span>
                     </button>
                     <button onclick="showTab('mission')" 
                             id="tab-mission" 
                             class="tab-button flex items-center space-x-2 px-6 py-3 rounded-lg font-semibold transition-all duration-300">
-                        <i class="ri-target-line"></i>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/>
+                            <path d="M12 6c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"/>
+                            <circle cx="12" cy="12" r="2"/>
+                        </svg>
                         <span>Nossa Missão</span>
                     </button>
                 </div>
 
                  <!-- Conteúdo da aba "Why Choose Us" -->
-                <div id="content-choose" class="tab-content hidden">
+                <div id="content-choose" class="tab-content">
                     <h2 class="text-4xl font-bold text-gray-900 mb-6">
                         Por que escolher a <span class="text-secondary">PSR Embalagens</span>?
                     </h2>
                     <div class="space-y-6 mb-8">
                         <div class="flex items-start space-x-4">
                             <div class="w-12 h-12 bg-primary text-white rounded-lg flex items-center justify-center flex-shrink-0">
-                                <i class="ri-medal-line text-xl"></i>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-2-13h4v2h-4zm0 3h4v6h-4z"/>
+                                </svg>
                             </div>
                             <div>
                                 <h3 class="font-semibold text-gray-900 mb-2">15+ Anos de experiência</h3>
@@ -831,7 +881,9 @@
                         </div>
                         <div class="flex items-start space-x-4">
                             <div class="w-12 h-12 bg-primary text-white rounded-lg flex items-center justify-center flex-shrink-0">
-                                <i class="ri-team-line text-xl"></i>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+                                    <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+                                </svg>
                             </div>
                             <div>
                                 <h3 class="font-semibold text-gray-900 mb-2">Milhares de clientes satisfeitos</h3>
@@ -840,7 +892,9 @@
                         </div>
                         <div class="flex items-start space-x-4">
                             <div class="w-12 h-12 bg-primary text-white rounded-lg flex items-center justify-center flex-shrink-0">
-                                <i class="ri-archive-line text-xl"></i>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+                                    <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V6h16v12zM6 10h2v2H6zm0 4h8v2H6zm10 0h2v2h-2zm-6-4h8v2h-8z"/>
+                                </svg>
                             </div>
                             <div>
                                 <h3 class="font-semibold text-gray-900 mb-2">Grande variedade de produtos</h3>
@@ -851,7 +905,7 @@
                 </div>
 
                 <!-- Conteúdo da aba "Our Story" -->
-                <div id="content-story" class="tab-content">
+                <div id="content-story" class="tab-content hidden">
                     <h2 class="text-4xl font-bold text-gray-900 mb-6">
                         Atendendo Empresas Desde 2010
                     </h2>
@@ -919,7 +973,7 @@
                             alt="PSR Embalagens - Rua da Loja" loading="lazy" class="rounded-lg shadow-lg object-cover w-full" style="max-height: 627px;">
                     </div>-->
                     <div class="carousel-item">
-                        <img src="images/trabalhando_no_estoque.JPG" 
+                        <img src="images/trabalhando_no_estoque.jpg" 
                             alt="Funcionário da PSR Embalagens organizando estoque de produtos" loading="lazy" class="rounded-lg shadow-lg object-cover w-full" style="max-height: 627px;">
                     </div>
                     <div class="carousel-item">
@@ -958,6 +1012,7 @@
             <div class="relative rounded-lg overflow-hidden shadow-lg">
                 <iframe 
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3839.2903327877243!2d-47.9464213!3d-15.788637900000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x935a311d2a52c945%3A0x3495b53058238b45!2sPSR%20Embalagens!5e0!3m2!1spt-BR!2sbr!4v1754508492863!5m2!1spt-BR!2sbr" 
+                    title="Localização da PSR Embalagens no Google Maps - CEASA Brasília DF"
                     class="w-full h-96" 
                     style="border:0;" 
                     allowfullscreen="" 
@@ -968,7 +1023,9 @@
             <div class="space-y-8">
                 <div class="flex items-start space-x-4">
                     <div class="w-12 h-12 flex items-center justify-center bg-[#214194] text-white rounded-lg flex-shrink-0">
-                        <i class="ri-map-pin-line text-xl"></i>
+                        <svg class="w-6 h-6" fill="currentColor">
+                            <use href="#icon-map-pin"></use>
+                        </svg>
                     </div>
                     <div>
                         <h3 class="text-xl font-semibold text-gray-900 mb-2">Endereço</h3>
@@ -981,7 +1038,9 @@
                 </div>
                 <div class="flex items-start space-x-4">
                     <div class="w-12 h-12 flex items-center justify-center bg-[#214194] text-white rounded-lg flex-shrink-0">
-                        <i class="ri-time-line text-xl"></i>
+                        <svg class="w-6 h-6" fill="currentColor">
+                            <use href="#icon-time"></use>
+                        </svg>
                     </div>
                     <div>
                         <h3 class="text-xl font-semibold text-gray-900 mb-2">Horário de Funcionamento</h3>
@@ -995,13 +1054,14 @@
                 </div>
                 <div class="flex items-start space-x-4">
                     <div class="w-12 h-12 flex items-center justify-center bg-[#214194] text-white rounded-lg flex-shrink-0">
-                        <i class="ri-phone-line text-xl"></i>
+                        <svg class="w-6 h-6" fill="currentColor">
+                            <use href="#icon-phone"></use>
+                        </svg>
                     </div>
                     <div>
                         <h3 class="text-xl font-semibold text-gray-900 mb-2">Contato</h3>
                         <p class="text-gray-600">
                             Telefone: (61) 99317-7107<br>
-                            Email: comercial@santaritaembalagens.com.br
                         </p>
                     </div>
                 </div>
@@ -1072,7 +1132,9 @@
                     <div>
                         <button type="submit" 
                                 class="w-full bg-primary text-white py-3 px-6 rounded-lg font-semibold hover:bg-primary-dark transition-colors focus:ring-2 focus:ring-primary focus:ring-offset-2">
-                            <i class="ri-send-plane-line mr-2"></i>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 inline-block mr-2">
+                                <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+                            </svg>
                             Enviar Mensagem
                         </button>
                     </div>
@@ -1085,11 +1147,21 @@
             <h3 class="text-2xl font-bold text-gray-900">Avaliações Google</h3>
             <div class="flex items-center space-x-2">
                 <div class="flex text-yellow-400">
-                    <i class="ri-star-fill"></i>
-                    <i class="ri-star-fill"></i>
-                    <i class="ri-star-fill"></i>
-                    <i class="ri-star-fill"></i>
-                    <i class="ri-star-fill"></i>
+                    <svg class="w-4 h-4" fill="currentColor">
+                        <use href="#icon-star-fill"></use>
+                    </svg>
+                    <svg class="w-4 h-4" fill="currentColor">
+                        <use href="#icon-star-fill"></use>
+                    </svg>
+                    <svg class="w-4 h-4" fill="currentColor">
+                        <use href="#icon-star-fill"></use>
+                    </svg>
+                    <svg class="w-4 h-4" fill="currentColor">
+                        <use href="#icon-star-fill"></use>
+                    </svg>
+                    <svg class="w-4 h-4" fill="currentColor">
+                        <use href="#icon-star-fill"></use>
+                    </svg>
                 </div>
                 <span class="text-gray-600 font-semibold">5.0</span>
             </div>
@@ -1110,15 +1182,25 @@
                         <p class="text-xs text-gray-500">2 avaliações • 0 foto</p>
                     </div>
                     <div class="flex text-yellow-400 text-sm">
-                        <i class="ri-star-fill"></i>
-                        <i class="ri-star-fill"></i>
-                        <i class="ri-star-fill"></i>
-                        <i class="ri-star-fill"></i>
-                        <i class="ri-star-fill"></i>
+                        <svg class="w-4 h-4" fill="currentColor">
+                            <use href="#icon-star-fill"></use>
+                        </svg>
+                        <svg class="w-4 h-4" fill="currentColor">
+                            <use href="#icon-star-fill"></use>
+                        </svg>
+                        <svg class="w-4 h-4" fill="currentColor">
+                            <use href="#icon-star-fill"></use>
+                        </svg>
+                        <svg class="w-4 h-4" fill="currentColor">
+                            <use href="#icon-star-fill"></use>
+                        </svg>
+                        <svg class="w-4 h-4" fill="currentColor">
+                            <use href="#icon-star-fill"></use>
+                        </svg>
                     </div>
                 </div>
                 <div class="flex items-center space-x-2 mb-2">
-                    <span class="text-xs text-gray-400">Há 3 semanas</span>
+                    <span class="text-xs text-gray-600">Há 3 semanas</span>
                     <span class="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded">Novo</span>
                 </div>
                 <p class="text-gray-600 text-sm leading-relaxed">
@@ -1131,7 +1213,7 @@
                         <span class="text-xs bg-primary text-white px-2 py-1 rounded">Proprietário</span>
                     </div>
                     <p class="text-sm text-gray-600">Obrigado pela sua avaliação, ficamos muito contentes com seu feedback.😊</p>
-                    <span class="text-xs text-gray-400">Há 4 dias</span>
+                    <span class="text-xs text-gray-600">Há 4 dias</span>
                 </div>
             </div>
         </div>
@@ -1149,22 +1231,34 @@
                         <h4 class="font-semibold text-gray-900">Wellisson Luis</h4>
                         <p class="text-xs text-gray-500">
                             <span class="inline-flex items-center text-blue-600">
-                                <i class="ri-map-pin-2-fill mr-1"></i>
+                                <svg class="w-4 h-4 mr-1" fill="currentColor">
+                                    <use href="#icon-map-pin"></use>
+                                </svg>
                                 Local Guide
                             </span>
                             • 10 avaliações • 12 fotos
                         </p>
                     </div>
                     <div class="flex text-yellow-400 text-sm">
-                        <i class="ri-star-fill"></i>
-                        <i class="ri-star-fill"></i>
-                        <i class="ri-star-fill"></i>
-                        <i class="ri-star-fill"></i>
-                        <i class="ri-star-fill"></i>
+                        <svg class="w-4 h-4" fill="currentColor">
+                            <use href="#icon-star-fill"></use>
+                        </svg>
+                        <svg class="w-4 h-4" fill="currentColor">
+                            <use href="#icon-star-fill"></use>
+                        </svg>
+                        <svg class="w-4 h-4" fill="currentColor">
+                            <use href="#icon-star-fill"></use>
+                        </svg>
+                        <svg class="w-4 h-4" fill="currentColor">
+                            <use href="#icon-star-fill"></use>
+                        </svg>
+                        <svg class="w-4 h-4" fill="currentColor">
+                            <use href="#icon-star-fill"></use>
+                        </svg>
                     </div>
                 </div>
                 <div class="flex items-center space-x-2 mb-2">
-                    <span class="text-xs text-gray-400">Há 3 dias</span>
+                    <span class="text-xs text-gray-600">Há 3 dias</span>
                     <span class="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded">Novo</span>
                 </div>
                 <p class="text-gray-600 text-sm leading-relaxed">
@@ -1177,7 +1271,7 @@
                         <span class="text-xs bg-primary text-white px-2 py-1 rounded">Proprietário</span>
                     </div>
                     <p class="text-sm text-gray-600">Obrigado pela avaliação! 😊</p>
-                    <span class="text-xs text-gray-400">Há pouco tempo</span>
+                    <span class="text-xs text-gray-600">Há pouco tempo</span>
                 </div>
             </div>
         </div>
@@ -1196,15 +1290,25 @@
                         <p class="text-xs text-gray-500">2 avaliações • 0 foto</p>
                     </div>
                     <div class="flex text-yellow-400 text-sm">
-                        <i class="ri-star-fill"></i>
-                        <i class="ri-star-fill"></i>
-                        <i class="ri-star-fill"></i>
-                        <i class="ri-star-fill"></i>
-                        <i class="ri-star-fill"></i>
+                        <svg class="w-4 h-4" fill="currentColor">
+                            <use href="#icon-star-fill"></use>
+                        </svg>
+                        <svg class="w-4 h-4" fill="currentColor">
+                            <use href="#icon-star-fill"></use>
+                        </svg>
+                        <svg class="w-4 h-4" fill="currentColor">
+                            <use href="#icon-star-fill"></use>
+                        </svg>
+                        <svg class="w-4 h-4" fill="currentColor">
+                            <use href="#icon-star-fill"></use>
+                        </svg>
+                        <svg class="w-4 h-4" fill="currentColor">
+                            <use href="#icon-star-fill"></use>
+                        </svg>
                     </div>
                 </div>
                 <div class="flex items-center space-x-2 mb-2">
-                    <span class="text-xs text-gray-400">Há 3 semanas</span>
+                    <span class="text-xs text-gray-600">Há 3 semanas</span>
                     <span class="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded">Novo</span>
                 </div>
                 <!-- Resposta da empresa -->
@@ -1214,7 +1318,7 @@
                         <span class="text-xs bg-primary text-white px-2 py-1 rounded">Proprietário</span>
                     </div>
                     <p class="text-sm text-gray-600">Obrigado pela avaliação! 😊</p>
-                    <span class="text-xs text-gray-400">Há 4 dias</span>
+                    <span class="text-xs text-gray-600">Há 4 dias</span>
                 </div>
             </div>
         </div>
@@ -1233,15 +1337,25 @@
                         <p class="text-xs text-gray-500">1 avaliação • 0 foto</p>
                     </div>
                     <div class="flex text-yellow-400 text-sm">
-                        <i class="ri-star-fill"></i>
-                        <i class="ri-star-fill"></i>
-                        <i class="ri-star-fill"></i>
-                        <i class="ri-star-fill"></i>
-                        <i class="ri-star-fill"></i>
+                        <svg class="w-4 h-4" fill="currentColor">
+                            <use href="#icon-star-fill"></use>
+                        </svg>
+                        <svg class="w-4 h-4" fill="currentColor">
+                            <use href="#icon-star-fill"></use>
+                        </svg>
+                        <svg class="w-4 h-4" fill="currentColor">
+                            <use href="#icon-star-fill"></use>
+                        </svg>
+                        <svg class="w-4 h-4" fill="currentColor">
+                            <use href="#icon-star-fill"></use>
+                        </svg>
+                        <svg class="w-4 h-4" fill="currentColor">
+                            <use href="#icon-star-fill"></use>
+                        </svg>
                     </div>
                 </div>
                 <div class="flex items-center space-x-2 mb-2">
-                    <span class="text-xs text-gray-400">Há 4 semanas</span>
+                    <span class="text-xs text-gray-600">Há 4 semanas</span>
                     <span class="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded">Novo</span>
                 </div>
                 <!-- Resposta da empresa -->
@@ -1251,7 +1365,7 @@
                         <span class="text-xs bg-primary text-white px-2 py-1 rounded">Proprietário</span>
                     </div>
                     <p class="text-sm text-gray-600">Obrigado pela avaliação! 😊</p>
-                    <span class="text-xs text-gray-400">Há 3 semanas</span>
+                    <span class="text-xs text-gray-600">Há 3 semanas</span>
                 </div>
             </div>
         </div>
@@ -1264,7 +1378,9 @@
             target="_blank"
             class="w-full bg-primary text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors flex items-center justify-center space-x-2"
             onclick="gtag('event', 'click', {'event_category': 'engagement', 'event_label': 'google_reviews'});">
-            <i class="ri-google-fill"></i>
+            <svg class="w-5 h-5" fill="currentColor">
+                <use href="#icon-google"></use>
+            </svg>
             <span>Ver Todas as Avaliações</span>
         </a>
     </div>
@@ -1286,7 +1402,9 @@
                     <button class="faq-question w-full px-6 py-4 text-left font-semibold text-gray-900 hover:text-primary transition-colors flex items-center justify-between"
                             onclick="toggleFAQ(1)">
                         <span>Vocês fazem entrega grátis em Brasília?</span>
-                        <i id="faq-icon-1" class="ri-add-line text-xl transform transition-transform"></i>
+                        <svg xmlns="http://www.w3.org/2000/svg" id="faq-icon-1" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 transform transition-transform">
+                            <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+                        </svg>
                     </button>
                     <div id="faq-answer-1" class="faq-answer hidden px-6 pb-4">
                         <p class="text-gray-600 leading-relaxed">
@@ -1300,7 +1418,9 @@
                     <button class="faq-question w-full px-6 py-4 text-left font-semibold text-gray-900 hover:text-primary transition-colors flex items-center justify-between"
                             onclick="toggleFAQ(2)">
                         <span>Qual o horário de funcionamento da PSR Embalagens?</span>
-                        <i id="faq-icon-2" class="ri-add-line text-xl transform transition-transform"></i>
+                        <svg xmlns="http://www.w3.org/2000/svg" id="faq-icon-2" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 transform transition-transform">
+                            <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+                        </svg>
                     </button>
                     <div id="faq-answer-2" class="faq-answer hidden px-6 pb-4">
                         <p class="text-gray-600 leading-relaxed">
@@ -1314,7 +1434,9 @@
                     <button class="faq-question w-full px-6 py-4 text-left font-semibold text-gray-900 hover:text-primary transition-colors flex items-center justify-between"
                             onclick="toggleFAQ(3)">
                         <span>Vocês vendem embalagens para delivery?</span>
-                        <i id="faq-icon-3" class="ri-add-line text-xl transform transition-transform"></i>
+                        <svg xmlns="http://www.w3.org/2000/svg" id="faq-icon-3" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 transform transition-transform">
+                            <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+                        </svg>
                     </button>
                     <div id="faq-answer-3" class="faq-answer hidden px-6 pb-4">
                         <p class="text-gray-600 leading-relaxed">
@@ -1328,11 +1450,13 @@
                     <button class="faq-question w-full px-6 py-4 text-left font-semibold text-gray-900 hover:text-primary transition-colors flex items-center justify-between"
                             onclick="toggleFAQ(4)">
                         <span>Como posso fazer um orçamento?</span>
-                        <i id="faq-icon-4" class="ri-add-line text-xl transform transition-transform"></i>
+                        <svg xmlns="http://www.w3.org/2000/svg" id="faq-icon-4" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 transform transition-transform">
+                            <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+                        </svg>
                     </button>
                     <div id="faq-answer-4" class="faq-answer hidden px-6 pb-4">
                         <p class="text-gray-600 leading-relaxed">
-                            Você pode solicitar orçamento pelo WhatsApp ou ligando para (61) 99317-7107, email comercial@santaritaembalagens.com.br ou visitando nossa loja no CEASA, Guará, Brasília-DF. Nossa equipe está sempre pronta para atendê-lo.
+                            Você pode solicitar orçamento pelo WhatsApp ou ligando para (61) 99317-7107, a apartir do formulario de contato ou visitando nossa loja no CEASA, Guará, Brasília-DF. Nossa equipe está sempre pronta para atendê-lo.
                         </p>
                     </div>
                 </div>
@@ -1342,7 +1466,9 @@
                     <button class="faq-question w-full px-6 py-4 text-left font-semibold text-gray-900 hover:text-primary transition-colors flex items-center justify-between"
                             onclick="toggleFAQ(5)">
                         <span>Vocês têm embalagens biodegradáveis?</span>
-                        <i id="faq-icon-5" class="ri-add-line text-xl transform transition-transform"></i>
+                        <svg xmlns="http://www.w3.org/2000/svg" id="faq-icon-5" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 transform transition-transform">
+                            <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+                        </svg>
                     </button>
                     <div id="faq-answer-5" class="faq-answer hidden px-6 pb-4">
                         <p class="text-gray-600 leading-relaxed">
@@ -1356,7 +1482,9 @@
                     <button class="faq-question w-full px-6 py-4 text-left font-semibold text-gray-900 hover:text-primary transition-colors flex items-center justify-between"
                             onclick="toggleFAQ(6)">
                         <span>Qual a localização da PSR Embalagens?</span>
-                        <i id="faq-icon-6" class="ri-add-line text-xl transform transition-transform"></i>
+                        <svg xmlns="http://www.w3.org/2000/svg" id="faq-icon-6" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 transform transition-transform">
+                            <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+                        </svg>
                     </button>
                     <div id="faq-answer-6" class="faq-answer hidden px-6 pb-4">
                         <p class="text-gray-600 leading-relaxed">
@@ -1372,7 +1500,9 @@
                 <a href="https://wa.me/5561993177107" target="_blank" 
                 class="bg-primary text-white px-8 py-4 rounded-lg font-semibold hover:bg-blue-700 transition-colors inline-flex items-center space-x-2"
                 onclick="gtag('event', 'click', {'event_category': 'conversion', 'event_label': 'whatsapp_faq'});">
-                    <i class="ri-whatsapp-line"></i>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+                        <path d="M17.498 14.382c-.301-.15-1.767-.867-2.04-.966-.273-.101-.473-.15-.673.15-.197.295-.771.964-.944 1.162-.175.195-.349.21-.646.075-.3-.15-1.263-.465-2.403-1.485-.888-.795-1.484-1.77-1.66-2.07-.174-.3-.019-.465.13-.615.136-.135.301-.345.451-.523.146-.181.194-.301.297-.496.1-.21.049-.375-.025-.524-.075-.15-.672-1.62-.922-2.206-.24-.584-.487-.51-.672-.51-.172-.015-.371-.015-.571-.015-.2 0-.523.074-.797.359-.273.3-1.045 1.02-1.045 2.475s1.07 2.865 1.219 3.075c.149.195 2.105 3.195 5.1 4.485.714.3 1.27.48 1.704.629.714.227 1.365.195 1.88.121.574-.091 1.767-.721 2.016-1.426.255-.705.255-1.29.18-1.425-.074-.135-.27-.21-.57-.345m-5.446 7.443h-.016c-1.77 0-3.524-.48-5.055-1.38l-.36-.214-3.75.975 1.005-3.645-.239-.375c-.99-1.576-1.516-3.391-1.516-5.26 0-5.445 4.455-9.885 9.942-9.885 2.654 0 5.145 1.035 7.021 2.91 1.875 1.859 2.909 4.35 2.909 6.99-.004 5.444-4.46 9.885-9.935 9.885M20.52 3.449C18.24 1.245 15.24 0 12.045 0 5.463 0 .104 5.334.101 11.893c0 2.096.549 4.14 1.595 5.945L0 24l6.335-1.652c1.746.943 3.71 1.444 5.71 1.447h.006c6.585 0 11.946-5.336 11.949-11.896 0-3.176-1.24-6.165-3.495-8.411"/>
+                    </svg>
                     <span>Fale Conosco no WhatsApp</span>
                 </a>
             </div>
@@ -1385,7 +1515,8 @@
     class="whatsapp-float" 
     title="Fale conosco no WhatsApp" 
     target="_blank"
-    onclick="gtag('event', 'click', {'event_category': 'conversion', 'event_label': 'whatsapp_float'});"></a>
+    onclick="gtag('event', 'click', {'event_category': 'conversion', 'event_label': 'whatsapp_float'});">
+</a>
 
 <!-- Footer -->
 <footer>
@@ -1409,7 +1540,7 @@
                         onclick="gtag('event', 'click', {'event_category': 'conversion', 'event_label': 'whatsapp_footer'});"></a>
                 </div>
             </div>
-                <div class="footer-section">
+            <div class="footer-section">
                 <h3>Empresa</h3>
                 <a href="#sobre">Sobre Nós</a>
                 <a href="#diferenciais">Nossos Diferenciais</a>
@@ -1419,7 +1550,6 @@
             <div class="footer-section">
                 <h3>Atendimento</h3>
                 <p>📞 (61) 99317-7107</p>
-                <p>📧 comercial@santaritaembalagens.com.br</p>
                 <p>🕒 Seg/Qui: 5h às 17h</p>
                 <p>🕒 Ter/Quar/Sex: 6h às 17h</p>
                 <p>🕒 Sáb: 5h às 12h</p>

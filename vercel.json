@@ -1,35 +1,22 @@
 {
-  "cleanUrls": true,
-  "trailingSlash": false,
-  "buildCommand": "node generate-config.js",
+  "$schema": "https://openapi.vercel.sh/vercel.json",
   "outputDirectory": ".",
-  "redirects": [
+  "buildCommand": "npm run build",
+  "installCommand": "npm install",
+  "rewrites": [
     {
-      "source": "/(.*)",
-      "destination": "https://psrembalagens.com.br/$1",
-      "permanent": true,
-      "has": [
-        {
-          "type": "header",
-          "key": "x-forwarded-proto",
-          "value": "http"
-        }
-      ]
+      "source": "/",
+      "destination": "/index.html"
     },
     {
-      "source": "/:path*.html",
-      "destination": "/:path*",
-      "permanent": true
+      "source": "/contato",
+      "destination": "/contato.html"
     }
   ],
   "headers": [
     {
       "source": "/(.*)",
       "headers": [
-        {
-          "key": "Strict-Transport-Security",
-          "value": "max-age=31536000; includeSubDomains; preload"
-        },
         {
           "key": "X-Content-Type-Options",
           "value": "nosniff"
@@ -41,10 +28,6 @@
         {
           "key": "X-XSS-Protection",
           "value": "1; mode=block"
-        },
-        {
-          "key": "Referrer-Policy",
-          "value": "origin-when-cross-origin"
         }
       ]
     }

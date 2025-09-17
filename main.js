@@ -49,40 +49,9 @@ class PSREmbalagens {
 
     // Mobile Menu - Unificado
     initMobileMenu() {
-        const mobileMenu = document.getElementById('mobile-menu');
-        const navLinks = document.querySelector('.nav-links');
-    
-        if (!mobileMenu || !navLinks) return;
-    
-        mobileMenu.addEventListener('click', () => {
-            const isActive = navLinks.classList.contains('active');
-            
-            if (isActive) {
-                navLinks.classList.remove('active');
-                mobileMenu.classList.remove('active');
-            } else {
-                navLinks.classList.add('active');
-                mobileMenu.classList.add('active');
-            }
-        });
-    
-        // Fechar menu ao clicar em links
-        navLinks.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                if (window.innerWidth <= 768) {
-                    navLinks.classList.remove('active');
-                    mobileMenu.classList.remove('active');
-                }
-            });
-        });
-    
-        // Gerenciar resize
-        window.addEventListener('resize', () => {
-            if (window.innerWidth > 768) {
-                navLinks.classList.remove('active');
-                mobileMenu.classList.remove('active');
-            }
-        });
+        // REMOVER TODO ESTE MÉTODO - está causando conflito
+        // O menu mobile já está funcionando corretamente no final do arquivo
+        return;
     }
 
     // Smooth Scrolling
@@ -113,64 +82,74 @@ class PSREmbalagens {
         if (!header) return;
 
         let lastScrollY = window.scrollY;
-        header.style.transition = 'all 0.3s ease';
+        let isScrolling = false;
         
-        const handleScroll = this.debounce(() => {
-            const currentScrollY = window.scrollY;
-            
-            if (currentScrollY > 100) {
-                header.style.background = 'rgba(255, 255, 255, 0.98)';
-                header.style.backdropFilter = 'blur(10px)';
-                header.style.boxShadow = '0 2px 20px rgba(33, 65, 148, 0.1)';
-            } else {
-                header.style.background = 'var(--white)';
-                header.style.backdropFilter = 'none';
-                header.style.boxShadow = '0 4px 15px rgba(33, 65, 148, 0.1)';
+        // Cache dos elementos para evitar consultas DOM repetidas
+        const navLinks = header.querySelectorAll('a:not(.social-links a)');
+        
+        // Usar CSS classes ao invés de inline styles
+        header.classList.add('header-transition');
+        
+        const handleScroll = () => {
+            if (!isScrolling) {
+                // Usar requestAnimationFrame para otimizar performance
+                requestAnimationFrame(() => {
+                    const currentScrollY = window.scrollY;
+                    
+                    // Batch todas as mudanças de classe
+                    if (currentScrollY > 100) {
+                        header.classList.add('header-scrolled');
+                    } else {
+                        header.classList.remove('header-scrolled');
+                    }
+                    
+                    if (currentScrollY > lastScrollY && currentScrollY > 200) {
+                        header.classList.add('header-hidden');
+                    } else {
+                        header.classList.remove('header-hidden');
+                    }
+                    
+                    lastScrollY = currentScrollY;
+                    isScrolling = false;
+                });
             }
-            
-            if (currentScrollY > lastScrollY && currentScrollY > 200) {
-                header.style.transform = 'translateY(-100%)';
-            } else {
-                header.style.transform = 'translateY(0)';
-            }
-            
-            lastScrollY = currentScrollY;
-        }, 10);
+            isScrolling = true;
+        };
 
-        window.addEventListener('scroll', handleScroll);
+        // Aumentar debounce para reduzir execuções
+        window.addEventListener('scroll', this.debounce(handleScroll, 16), { passive: true });
+        
+        // Aplicar estilos iniciais via CSS class
+        navLinks.forEach(link => {
+            link.classList.add('nav-link-styled');
+        });
     }
 
     // Animations
     initAnimations() {
-        if (!('IntersectionObserver' in window)) {
-            // Fallback para navegadores antigos
-            document.querySelectorAll('.diferencial-item, .produto-card, .stat-item').forEach(el => {
-                el.style.opacity = '1';
-                el.style.transform = 'translateY(0)';
-            });
-            return;
-        }
-        
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                    
-                    const siblings = Array.from(entry.target.parentElement.children);
-                    const index = siblings.indexOf(entry.target);
-                    entry.target.style.transitionDelay = `${index * 0.1}s`;
+                    entry.target.style.animation = `fadeInUp 0.6s ease-out forwards`;
+                    observer.unobserve(entry.target);
                 }
             });
-        }, {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        });
+        }, observerOptions);
 
-        document.querySelectorAll('.diferencial-item, .produto-card, .stat-item').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'all 0.6s ease';
+        // Observar todos os cards de produtos
+        document.querySelectorAll('.produto-card').forEach((card, index) => {
+            card.style.animationDelay = `${(index * 0.1) + 0.1}s`;
+            observer.observe(card);
+        });
+        
+        // Observar outros elementos animados
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
             observer.observe(el);
         });
     }
@@ -430,8 +409,13 @@ class PSREmbalagens {
     // EmailJS
     async loadEmailJS() {
         try {
-            if (typeof emailjs !== 'undefined' && window.CONFIG) {
-                emailjs.init(window.CONFIG.EMAILJS_PUBLIC_KEY);  // ✅ USA VARIÁVEL DE AMBIENTE
+            const publicKey = document.querySelector('meta[name="emailjs-public-key"]')?.content;
+            const serviceId = document.querySelector('meta[name="emailjs-service-id"]')?.content;
+            const templateId = document.querySelector('meta[name="emailjs-template-id"]')?.content;
+            
+            if (typeof emailjs !== 'undefined' && publicKey) {
+                emailjs.init(publicKey);
+                this.emailjsConfig = { serviceId, templateId };
                 this.isEmailJSLoaded = true;
                 console.log('✅ EmailJS carregado');
             }
@@ -450,8 +434,8 @@ class PSREmbalagens {
         };
         
         return emailjs.send(
-            window.CONFIG.EMAILJS_SERVICE_ID,    // ✅ USA VARIÁVEL DE AMBIENTE
-            window.CONFIG.EMAILJS_TEMPLATE_ID,   // ✅ USA VARIÁVEL DE AMBIENTE
+            this.emailjsConfig.serviceId,
+            this.emailjsConfig.templateId,
             templateParams
         );
     }
@@ -618,3 +602,133 @@ const psrApp = new PSREmbalagens();
 
 // Exportar para uso global se necessário
 window.PSREmbalagens = psrApp;
+
+// Mobile Menu Toggle
+document.addEventListener('DOMContentLoaded', function() {
+    const mobileMenuBtn = document.getElementById('mobile-menu');
+    const mobileOverlay = document.getElementById('mobile-overlay');
+    const mobileClose = document.getElementById('mobile-close');
+    const mobileNavLinks = document.querySelectorAll('.mobile-nav-link, .mobile-catalog-btn');
+
+    // Abrir menu
+    mobileMenuBtn.addEventListener('click', function() {
+        mobileOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden'; // Previne scroll
+    });
+
+    // Fechar menu
+    function closeMenu() {
+        mobileOverlay.classList.remove('active');
+        document.body.style.overflow = ''; // Restaura scroll
+    }
+
+    mobileClose.addEventListener('click', closeMenu);
+
+    // Fechar ao clicar em link
+    mobileNavLinks.forEach(link => {
+        link.addEventListener('click', closeMenu);
+    });
+
+    // Fechar ao clicar fora do conteúdo
+    mobileOverlay.addEventListener('click', function(e) {
+        if (e.target === mobileOverlay) {
+            closeMenu();
+        }
+    });
+
+    // Fechar com tecla ESC
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && mobileOverlay.classList.contains('active')) {
+            closeMenu();
+        }
+    });
+});
+
+// Mobile Menu - Extraído do main.js 
+class MobileMenu { 
+    constructor() { 
+        this.init(); 
+    } 
+
+    init() { 
+        if (document.readyState === 'loading') { 
+            document.addEventListener('DOMContentLoaded', () => this.initMobileMenu()); 
+        } else { 
+            this.initMobileMenu(); 
+        } 
+    } 
+
+    initMobileMenu() { 
+        const mobileMenu = document.getElementById('mobile-menu'); 
+        const navLinks = document.querySelector('.nav-links'); 
+    
+        if (!mobileMenu || !navLinks) return; 
+    
+        mobileMenu.addEventListener('click', () => { 
+            const isActive = navLinks.classList.contains('active'); 
+            
+            if (isActive) { 
+                navLinks.classList.remove('active'); 
+                mobileMenu.classList.remove('active'); 
+            } else { 
+                navLinks.classList.add('active'); 
+                mobileMenu.classList.add('active'); 
+            } 
+        }); 
+        
+        // Fechar menu ao clicar no X (pseudo-elemento)
+        navLinks.addEventListener('click', (e) => {
+            const rect = navLinks.getBoundingClientRect();
+            const clickX = e.clientX - rect.left;
+            const clickY = e.clientY - rect.top;
+            
+            // Área do botão X (canto superior direito)
+            if (clickX > rect.width - 80 && clickY < 80) {
+                navLinks.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            }
+        });
+    
+        // Fechar menu ao clicar em links
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    navLinks.classList.remove('active');
+                    mobileMenu.classList.remove('active');
+                }
+            });
+        });
+    
+        // Gerenciar resize
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
+                navLinks.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            }
+        });
+        
+        // Fechar com tecla ESC
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            }
+        });
+    } 
+} 
+
+// Inicializar Mobile Menu 
+new MobileMenu();
+
+// Registrar Service Worker para cache
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function() {
+        navigator.serviceWorker.register('/sw.js')
+            .then(function(registration) {
+                console.log('✅ Service Worker registrado:', registration.scope);
+            })
+            .catch(function(error) {
+                console.log('❌ Falha ao registrar Service Worker:', error);
+            });
+    });
+}
